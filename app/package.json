@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "An aerial naviagtion app for learning earth locations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Babatunde Ali-Brown",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-session": "^2.0.0",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.1.0"
+  }
+}
