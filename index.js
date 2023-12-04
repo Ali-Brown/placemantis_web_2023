@@ -45,6 +45,10 @@ app.use(
   })
 );
 
+app.get('/', (req, res) => {
+  res.send('Welcome to Placemantis Web New Implementation');
+});
+
 app.get('/home', (req, res) => {
     res.send('Welcome to Placemantis Web New Implementation');
 });
