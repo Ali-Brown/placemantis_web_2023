@@ -1,6 +1,9 @@
 {
   "name": "app",
   "version": "1.0.0",
+  "engines": {
+    "node": "21.x"
+  },
   "description": "An aerial naviagtion app for learning earth locations",
   "main": "index.js",
   "scripts": {
