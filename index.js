@@ -4,13 +4,16 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const seedPlaces = require('./dbModels/places_seed');
 
+import * as dotenv from "dotenv";
+dotenv.config();
+
 const app = express();
 
 /* MONGODB SET UP - start */
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = keys.mongoURI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+/*
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -18,6 +21,15 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
+*/
+
+const client = new MongoClient(process.env.uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+})
 
 async function run() {
   try {
