@@ -2,7 +2,7 @@ const express = require('express');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
-const seedPlaces = require('./dbModels/places_seed');
+//const seedPlaces = require('./dbModels/places_seed');
 
 const app = express();
 
