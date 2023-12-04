@@ -54,4 +54,6 @@ app.get('/home', (req, res) => {
   res.send('Testing MongoDB connection');
 }); */
 
-app.listen(8000);
+//app.listen(8000);
+const PORT = process.env.PORT || 8000;
+app.listen(PORT);
