@@ -2,7 +2,7 @@ const express = require('express');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
-//const seedPlaces = require('./dbModels/places_seed');
+const seedPlaces = require('./dbModels/places_seed');
 
 const app = express();
 
@@ -54,10 +54,10 @@ app.get('/home', (req, res) => {
     res.send('Welcome to Placemantis Web New Implementation');
 });
 
-/* app.get('/seed_places', (req, res) => {
+app.get('/seed_places', (req, res) => {
   seedPlaces();
   res.send('Testing MongoDB connection');
-}); */
+});
 
 //app.listen(8000);
 const PORT = process.env.PORT || 8000;
