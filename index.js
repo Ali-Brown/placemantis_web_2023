@@ -44,13 +44,13 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
   res.send('Welcome to Placemantis Web New Implementation');
 });
 
 app.get('/home', (req, res) => {
     res.send('Welcome to Placemantis Web New Implementation');
-});
+}); */
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
