@@ -1,0 +1,124 @@
+@import '../../sass_variables.scss';
+
+.screenTracker {
+    @include by-parent;
+    position: absolute;
+    z-index: $z5;
+}
+
+// Orientation
+
+.trackerOrientation {
+    @include by-parent;
+    background: $dark-blue;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+}
+
+.trackerOrientationTop {
+    flex: 0 0 55%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: $frame-30;
+    box-sizing: border-box;
+}
+
+.trackerOrientationBottom {
+    flex: 0 0 45%;
+    padding: $frame-30;
+    padding-top: $frame-60;
+    box-sizing: border-box;
+}
+
+.trackerOrientationSvgs {
+    width: calc(28vw);
+    height: calc(28vw);
+    display: flex;
+}
+
+.trackerOrientationPortrait {
+    transform-origin: 50% 50%;
+    position: absolute;
+    height: 25vw;
+}
+
+.trackerOrientationLandscape {
+    // transform-origin: 50% 100%;
+    position: absolute;
+    z-index: $z5-1;
+    height: 25vw;
+}
+
+.trackerOrientationArrow {
+    transform-origin: 50% 50%;
+    position: absolute;
+    height: calc(14vw);
+    z-index: $z5-2;
+    transform: translateX(calc(14vw)) translateY(calc(4vw));
+}
+
+.trackerOrientationText {
+    color: $green;
+    @include font-m75;
+
+    span {
+        display: inline-block;
+        margin-right: $frame-12;
+        transform-origin: 0 0;
+    }
+}
+
+// size
+
+.trackerSize {
+    @include by-parent;
+    background: $dark-blue;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+}
+
+.trackerSizeTop {
+    flex: 0 0 55%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: $frame-30;
+    box-sizing: border-box;
+    background: $dark-blue;
+}
+
+.trackerSizeBottom {
+    flex: 0 0 45%;
+    padding: $frame-30;
+    padding-top: $frame-60;
+    box-sizing: border-box;
+    background: $dark-blue;
+}
+
+.trackerSizeSvg {
+    width: calc(28vw);
+    height: calc(28vw);
+    display: flex;
+    // transform-origin: 50% 100%;
+}
+
+.trackerSizeLandscape {
+    transform: translateX(calc(7vw)) translateY(calc(9vw)) rotate(90deg);
+    position: absolute;
+    z-index: $z5-1;
+    height: 25vw;
+}
+
+.trackerSizeText {
+    color: $green;
+    @include font-m90;
+
+    span {
+        display: inline-block;
+        margin-right: $frame-12;
+        transform-origin: 0 0;
+    }
+}

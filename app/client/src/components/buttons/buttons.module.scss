@@ -1,0 +1,36 @@
+@import '../../sass_variables.scss';
+
+%buttonBasic {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    @include font-b36;
+    color: $green;
+    border: $frame-3 solid $green;
+    width: 100%;
+    padding: $frame-36;
+}
+
+.DialogueButton {
+    @extend %buttonBasic;
+    background: $light-blue;
+
+    /* &:hover {
+        background: $dark-purple;
+    } */
+}
+
+.buttonDisabled {
+    @extend %buttonBasic;
+    background: $light-blue;
+    color: $dark-purple;
+    border: $frame-3 solid $dark-purple;
+    background: none;
+}
+
+.DialogueWarningButton {
+    @extend %buttonBasic;
+    background: $red;
+}
