@@ -1,5 +1,8 @@
+@import './sass_variables.scss';
+
 .App {
   text-align: center;
+  // margin: $frame-48;
 }
 
 .App-logo {
@@ -14,7 +17,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: $purple;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +28,8 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: $green;
+  @include font-b90;
 }
 
 @keyframes App-logo-spin {

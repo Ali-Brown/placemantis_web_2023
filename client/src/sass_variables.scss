@@ -1,0 +1,207 @@
+// colors
+$light-purple: #8032ff;
+$purple: #5923b2;
+$dark-purple: #391671;
+
+$light-green: #d2ff77;
+$green: #abff00;
+$dark-green: #77b200;
+
+$light-blue: #252cff;
+$blue1: #090fbe;
+$blue2: #050a7f;
+$dark-blue: #060725;
+
+$red: #ff1a00;
+
+// fonts by mixin at the reference screensize of 1920px
+
+// regular
+@mixin font-r24 {
+    font-size: calc(1.25vw);
+    font-weight: 400;
+    font-size: -webkit-calc(1.25vw);
+    font-size: -moz-calc(1.25vw);
+    line-height: 1;
+}
+
+@mixin font-r30 {
+    font-size: calc(1.5625vw);
+    font-weight: 400;
+    font-size: -webkit-calc(1.5625vw);
+    font-size: -moz-calc(1.5625vw);
+    line-height: 1;
+}
+
+@mixin font-r36 {
+    font-size: calc(1.875vw);
+    font-weight: 400;
+    font-size: -webkit-calc(1.875vw);
+    font-size: -moz-calc(1.875vw);
+    line-height: 1;
+}
+
+@mixin font-r48 {
+    font-size: calc(2.5vw);
+    font-weight: 400;
+    font-size: -webkit-calc(2.5vw);
+    font-size: -moz-calc(2.5vw);
+    line-height: 1;
+}
+
+// medium
+
+@mixin font-m30 {
+    font-size: calc(1.5625vw);
+    font-weight: 500;
+    font-size: -webkit-calc(1.5625vw);
+    font-size: -moz-calc(1.5625vw);
+    line-height: 1;
+}
+
+@mixin font-m36 {
+    font-size: calc(1.875vw);
+    font-weight: 500;
+    font-size: -webkit-calc(1.875vw);
+    font-size: -moz-calc(1.875vw);
+    line-height: 1;
+}
+
+@mixin font-m48 {
+    font-size: calc(2.5vw);
+    font-weight: 500;
+    font-size: -webkit-calc(2.5vw);
+    font-size: -moz-calc(2.5vw);
+    line-height: 1;
+}
+
+@mixin font-m60 {
+    font-size: calc(3.125vw);
+    font-weight: 500;
+    font-size: -webkit-calc(3.125vw);
+    font-size: -moz-calc(3.125vw);
+    line-height: 1;
+}
+
+@mixin font-m75 {
+    font-size: calc(3.9vw);
+    font-weight: 500;
+    font-size: -webkit-calc(3.9vw);
+    font-size: -moz-calc(3.9vw);
+    line-height: 1;
+}
+
+@mixin font-m90 {
+    font-size: calc(4.6875vw);
+    font-weight: 500;
+    font-size: -webkit-calc(4.6875vw);
+    font-size: -moz-calc(4.6875vw);
+    line-height: 1;
+}
+
+// bold
+
+@mixin font-b24 {
+    font-size: calc(1.25vw);
+    font-weight: 700;
+    font-size: -webkit-calc(1.25vw);
+    font-size: -moz-calc(1.25vw);
+    line-height: 1;
+}
+
+@mixin font-b36 {
+    font-size: calc(1.875vw);
+    font-weight: 700;
+    font-size: -webkit-calc(1.875vw);
+    font-size: -moz-calc(1.875vw);
+    line-height: 1;
+}
+
+@mixin font-b48 {
+    font-size: calc(2.5vw);
+    font-weight: 700;
+    font-size: -webkit-calc(2.5vw);
+    font-size: -moz-calc(2.5vw);
+    line-height: 1;
+}
+
+@mixin font-b60 {
+    font-size: calc(3.125vw);
+    font-weight: 700;
+    font-size: -webkit-calc(3.125vw);
+    font-size: -moz-calc(3.125vw);
+    line-height: 1;
+}
+
+@mixin font-b75 {
+    font-size: calc(3.9vw);
+    font-weight: 700;
+    font-size: -webkit-calc(3.9vw);
+    font-size: -moz-calc(3.9vw);
+    line-height: 1;
+}
+
+@mixin font-b90 {
+    font-size: calc(4.6875vw);
+    font-weight: 700;
+    font-size: -webkit-calc(4.6875vw);
+    font-size: -moz-calc(4.6875vw);
+    line-height: 1;
+}
+
+// paddings and margins
+
+// micro 3/1920% of screensize
+$frame-3: calc(0.15625vw);
+
+// smallest 6/1920% of screensize
+$frame-6: calc(0.3125vw);
+
+// small 12/1920% of screensize
+$frame-12: calc(0.625vw); 
+
+// medium 24/1920% of screensize
+$frame-24: calc(1.25vw);
+
+// large 30/1920% 0f screensize
+$frame-30: calc(1.5625vw);
+
+// large 30/1920% 0f screensize
+$frame-36: calc(1.875vw);
+
+// larger 48/1920% of screensize
+$frame-48: calc(2.5vw);
+
+// largest 60/1920% of screensize
+$frame-60: calc(3.125vw);
+
+// macro 90/1920% of screensize
+$frame-90: calc(4.6875vw);
+
+// mega 120/1920% of screensize
+$frame-120: calc(6.25vw);
+
+// size presets
+
+@mixin by-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+@mixin by-parent {
+    width: 100%;
+    height: 100%;
+}
+
+// Z-index presets
+
+$z1: 100;
+$z2: 200;
+$z3: 300;
+$z4: 400;
+$z5: 500;
+$z5-1: 510;
+$z5-2: 520;
+$z5-3: 530;
+$z5-4: 540;
+$z5-5: 550;
