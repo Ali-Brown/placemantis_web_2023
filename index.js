@@ -19,7 +19,6 @@ const client = new MongoClient(uri, {
   }
 });
 
-
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -34,7 +33,6 @@ async function run() {
 }
 run().catch(console.dir);
 /* MONGODB SET UP - end */
-
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -59,6 +57,5 @@ app.get('/home', (req, res) => {
   res.send('Testing MongoDB connection');
 }); */
 
-//app.listen(8000);
 const PORT = process.env.PORT || 8000;
 app.listen(PORT);
