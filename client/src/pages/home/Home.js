@@ -9,6 +9,7 @@ import SelectDifficulty from './homeSelect/SelectDifficulty';
 import ResumeMission from './homeSelect/ResumeMission';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
+import { useNavigate } from "react-router-dom";
 
 
 const Home = props => {
@@ -23,6 +24,8 @@ const Home = props => {
     // savedMission state below is used for testing purpose only,
     // retrieve the value of savedMission from global state
     const [savedMission] = useState(false);
+
+    const history = useNavigate();
 
     let gameData;
     if (resumeSavedMission) {
@@ -41,12 +44,10 @@ const Home = props => {
 
 
     useEffect(() => {
-
         if (startOrResumeMission) {
             props.onSetGameData(gameData); 
-            //props.history.push('/game_play');           
+            history('/game_play');           
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps    
     }, [startOrResumeMission]);
 
     const optionStartMission = () => {
