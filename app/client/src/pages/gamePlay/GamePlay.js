@@ -1,0 +1,140 @@
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/index';
+import styles from './gamePlay.module.scss';
+import Moderator from './moderator/Moderator';
+import {shuffleArray} from '../../utilities/utilities';
+import Player from './player/Player';
+import PrePlayer from './prePlayer/PrePlayer';
+import Timer from './Timer';
+import withRouter from '../../withRouter';
+
+class GamePlay extends Component {
+
+    state = {
+        prePlayerOn: false,
+        prePlayerTimeOn: false,
+    }
+
+    componentDidMount() {
+        const gameStages = [
+            'Africa', 'Oceania', 'Europe', 'North America',
+            'Asia', 'South America', 'Southern Europe', 
+            'Central and South Asia', 'West and Central Africa',
+            'The Caribbean Islands', 'West Indies and West Africa', 
+            'Southeast Asia and Oceania', 'East Africa and Middle East Asia'
+        ]
+    
+        const stagesShuffled = shuffleArray(gameStages);
+        stagesShuffled.unshift('Southern Africa');
+        stagesShuffled.push('World');
+
+        if (this.props.gameData.type === null) {
+            this.props.router.navigate('/');
+        }
+
+        if (this.props.gameData.type === 'ResumeSavedGame') {
+            this.props.onShowLevelsDialogue();
+        } else {
+            this.props.onShowTypeDialogue(stagesShuffled);
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.showPlayer === false && this.props.showPlayer === true) {
+            this.setState({ prePlayerOn: true, prePlayerTimeOn: true});
+        } else if (prevProps.showPlayer === true && this.props.showPlayer === false) {
+            this.setState({ prePlayerOn: false, prePlayerTimeOn: false});
+        } else if (prevProps.prePlayerTimerEnded === false && this.props.prePlayerTimerEnded === true) {
+            this.setState({ prePlayerOn: false, prePlayerTimeOn: false});
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.onResetGameState();
+    }
+
+    render() {
+
+        let prePlayerStage;
+
+        if (this.props.gameData.type === "Multilevel") {
+            prePlayerStage = this.props.levelStage;
+        } else {
+            prePlayerStage = this.props.gameData.stage;
+        }
+        return(
+            <div className={styles.gamePlay}>
+                { this.props.showModerator ?
+                    <div className={styles.moderator}>
+                        <Moderator 
+                            gameType={this.props.gameData.type}
+                            gameStage={this.props.gameData.stage}
+                            gameDifficulty={this.props.gameData.difficulty}
+                            gameScope={this.props.gameData.scope}
+                            savedGame={this.props.gameData.savedMission}
+                        />
+                    </div>
+                    :
+                    null
+                }
+                { this.props.showPlayer ?
+                    <div className={styles.player}>
+                        { this.state.prePlayerOn ?
+                            <PrePlayer stage={prePlayerStage}/>
+                            :
+                            <Player />
+                        }
+                    </div>
+                    :
+                    null
+                }
+                {   this.props.showFelicitator ?
+                    <div className={styles.felicitator}>
+                        FELICITATOR SHOWS HERE
+                    </div>
+                    :
+                    null
+                }
+                {this.state.prePlayerOn ?
+                    <div className={styles.prePlayerTimerDud}>
+                        <Timer 
+                            timerType='prePlayerTimer'
+                            seconds={2}
+                        />
+                    </div>
+                  :
+                  null
+                }
+            </div>
+          )
+    }    
+}
+
+const mapStateToProps = state => {
+    return {
+        gameData: state.game.gameData,
+
+        showModerator: state.game.showModerator,
+        showPlayer: state.game.showPlayer,
+        showFelicitator: state.game.showFelicitator,
+
+        prePlayerTimerEnded: state.game.prePlayerTimerEnded,
+
+        levelStage: state.game.levelStage,
+        // below from global auth state
+        // isAuthenticated: false,
+        // user: null
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onResetGameState: () => dispatch(actions.resetGameState()),
+        onShowLevelsDialogue: () => dispatch(actions.showLevelsDialogue()), 
+        onShowTypeDialogue: (stagesShuffled) => dispatch(actions.showTypeDialogue(stagesShuffled))
+    }
+}
+
+//export default connect(mapStateToProps, mapDispatchToProps)(withRouter(GamePlay));
+export default connect(mapStateToProps, mapDispatchToProps)( withRouter(GamePlay));

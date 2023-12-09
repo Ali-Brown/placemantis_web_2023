@@ -81,6 +81,10 @@
     @include by-parent;
     display: flex;
     text-align: left;
+
+    button {
+        font-family: 'Changa', sans-serif;
+    }
 }
 
 .homeMainLogin {
@@ -94,6 +98,10 @@
 .homeMainStartMission {
     flex: 0 0 53%;
     color: $green;
+
+    button {
+        font-family: 'Changa', sans-serif;
+    }
 }
 
 .homeMainAudio {
