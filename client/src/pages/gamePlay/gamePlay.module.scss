@@ -1,0 +1,18 @@
+@import '../../sass_variables.scss';
+
+.gamePlay {
+    @include by-parent;
+}
+
+.moderator {
+    @include by-parent;
+}
+
+.player {
+    @include by-parent;
+}
+
+.prePlayerTimerDud {
+    height: 0;
+    width: 0;
+}
