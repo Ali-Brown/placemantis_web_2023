@@ -1,10 +1,12 @@
 const express = require('express');
 const keys = require('./config/keys');
-const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
-//const seedPlaces = require('./dbModels/places_seed');
+const authRoutes = require('./routes/auth');
+
+
 
 const app = express();
+
 
 /* MONGODB SET UP - start */
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -34,23 +36,12 @@ async function run() {
 run().catch(console.dir);
 /* MONGODB SET UP - end */
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
-  })
-);
+authRoutes(app);
 
-/* app.get('/', (req, res) => {
-  res.send('Welcome to Placemantis Web New Implementation');
-});
-
-app.get('/home', (req, res) => {
-    res.send('Welcome to Placemantis Web New Implementation');
-}); */
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
@@ -60,11 +51,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-/* app.get('/seed_places', (req, res) => {
-  seedPlaces();
-  res.send('Testing MongoDB connection');
-}); */
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT);

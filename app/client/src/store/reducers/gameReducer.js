@@ -9,6 +9,26 @@ const initialState = {
         savedMission: null
     },
 
+    playParams: {
+        scorePerRound: 1000,
+        simpleWrongChoiceLoss: 500,
+        hardWrongChoiceLoss: 1000,
+        simpleSecondsPerRound: 12,
+        hardSecondsPerRound: 8,
+        roundTimerWarningSecond: 4,
+        roundIntervalSeconds: 2,
+        bonusPointPerRightCount: 500,
+        rightCountForBonusPointsMaxSimple: 6,
+        rightCountForBonusPointsMaxHard: 8,
+        rightCountForBonusLiveMaxSimple: 10,
+        rightCountForBonusLiveMaxHard: 12,
+        bonusPointPerRightCountHard: 1000,
+        rightCountForBonusPointsWorldMaxSimple: 10,
+        rightCountForBonusPointsWorldMaxHard: 14,
+        rightCountForBonusLiveWorldMaxSimple: 16,
+        rightCountForBonusLiveWorldMaxHard: 20
+    },
+
     showModerator: true,
     showPlayer: false,
     showFelicitator: false,

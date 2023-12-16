@@ -234,16 +234,19 @@ const Home = props => {
         setStartOrResumeMission(true);
     }
 
+    const logoutClicked = () => {
+        props.onLogoutUser();
+    }
 
 
-    let pageContent = 
-    <HomeMain 
-        /* isAuthenticated */ 
-        /* audioOn */
-        startMissionSelected={optionStartMission}
-        audioSelected={optionAudio}
-        /* avatarType="Reed" */
-    />
+
+    let pageContent = <HomeMain/>;
+    let user = props.user;
+    let avatarType;
+
+    if (user != null) {
+        avatarType = user.avatarType
+    }
 
     if (currentView === 'HomeMain') {
         // setCurrentView('HomeMain');
@@ -253,7 +256,8 @@ const Home = props => {
             /* audioOn */
             startMissionSelected={optionStartMission}
             audioSelected={optionAudio}
-            /* avatarType="Reed" */
+            logoutClicked={logoutClicked}
+            avatarType={avatarType}
         />
     }
 
@@ -328,13 +332,16 @@ const Home = props => {
 // will be coming in from auth global states below
 const mapStateToProps = state => {
     return {
-        gameData: state.game.gameData
+        gameData: state.game.gameData,
+        isAuthenticated: state.auth.isAuthenticated,
+        user: state.auth.user
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSetGameData: ( gameData ) => dispatch(actions.setGameData( gameData ))
+        onSetGameData: ( gameData ) => dispatch(actions.setGameData( gameData )),
+        onLogoutUser: ( gameData ) => dispatch(actions.logoutUser( gameData))
     };
 };
 

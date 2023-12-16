@@ -74,7 +74,7 @@ const HomeMain = props => {
             position3Y: [20, 0],
             position3X: [0, 0],
             position3DelayPerChild: 140,
-            position3TimeOffset: '-=750'
+            position3TimeOffset: '-=750',
         }
 
         let mantisPositionProp = {
@@ -1691,11 +1691,15 @@ const HomeMain = props => {
                 <div className='homeMainAuth'>
                     {props.isAuthenticated ?
                         <div className='homeMainAuthenticated'>
-                            <Link to="/profile">
-                                <button>
+                                <button className='userAvatar'>
                                     <Avatar userAvatar={props.avatarType}/>
                                 </button>
-                            </Link>      
+                                <button
+                                    className='logoutOption'
+                                    onClick={props.logoutClicked}
+                                > 
+                                    Logout
+                                </button>
                         </div>
                         :
                         <div className='homeMainUnauthenticated'>

@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import authReducer from './store/reducers/authReducer';
 import gameReducer from './store/reducers/gameReducer';
+import {SET_AUTHENTICATION_FROM_LOCAL_STORAGE} from './store/actions/actionTypes';
 
 
 const store = configureStore({ 
@@ -17,6 +18,12 @@ const store = configureStore({
   }
 });
 
+const user = localStorage.getItem(('user'));
+const userParsed = JSON.parse(user);
+
+if (user) {
+  store.dispatch({ type: SET_AUTHENTICATION_FROM_LOCAL_STORAGE, user: userParsed });
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

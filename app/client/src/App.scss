@@ -40,3 +40,16 @@
     transform: rotate(360deg);
   }
 }
+
+.loadIndicator {
+  display: flex;
+  flex-flow: column;
+  @include by-parent;
+  background: $dark-blue;
+  justify-content: center;
+}
+
+.loadText {
+  @include font-b60;
+  color: $green;
+}

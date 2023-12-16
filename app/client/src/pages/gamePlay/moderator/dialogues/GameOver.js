@@ -14,6 +14,7 @@ const GameOver = props => {
     let totalRounds;
     let completedRounds;
     let stageName;
+    let highestPossibleScore;
 
     if (props.playedType === 'Single') {
         stageName = props.playedStage;
@@ -29,6 +30,16 @@ const GameOver = props => {
     let totalScore = props.totalGameScore;
     let missionScore = numberWithCommas(totalScore);
     let unbonusedStageScore = totalRounds * 1000;
+
+    if (props.difficulty === 'Simple') {
+        let nonBonusedScore = props.scorePerRound * totalRounds;
+        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxSimple) * props.bonusPointPerRightCount; 
+        highestPossibleScore = nonBonusedScore + bonusedScore;
+    } else {
+        let nonBonusedScore = props.scorePerRound * totalRounds;
+        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxHard) * props.bonusPointPerRightCountHard; 
+        highestPossibleScore = nonBonusedScore + bonusedScore;
+    }
 
 
 
@@ -132,10 +143,12 @@ const GameOver = props => {
                     </div>
                     <div>
                         <h4>
-                            Overall Best
+                            {/* this should highest possible score */}
+                            {/* Overall best indicates every player's best score for stage */}
+                            Score Peak
                         </h4>
                         <span>
-                            {props.gameTypeOverallBest}
+                            {highestPossibleScore}
                         </span>
                     </div>
                 </div>
@@ -177,7 +190,15 @@ const GameOver = props => {
 }
 
 const mapStateToProps = state => {
-    return {}
+    return {
+        difficulty: state.game.gameData.difficulty,
+
+        scorePerRound: state.game.playParams.scorePerRound,
+        rightCountForBonusPointsMaxSimple: state.game.playParams.rightCountForBonusPointsMaxSimple,
+        rightCountForBonusPointsMaxHard: state.game.playParams.rightCountForBonusPointsMaxHard,
+        bonusPointPerRightCount: state.game.playParams.bonusPointPerRightCount,
+        bonusPointPerRightCountHard: state.game.playParams.bonusPointPerRightCountHard,
+    }
 }
 
 const mapDispatchToProps = dispatch => {
