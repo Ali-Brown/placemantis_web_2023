@@ -4669,7 +4669,7 @@ const placeList = [
 ];
 
 const { MongoClient } = require("mongodb");
-const { collection } = require('./Place');
+//const { collection } = require('./Place');
  
 // Replace the following with your Atlas connection string                                                                                                                                        
 const url = keys.mongoURI;

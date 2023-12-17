@@ -41,7 +41,7 @@ const GameType = props => {
                     :
                     null
                 }
-                { props.scope === 'World' ?
+                {/* { props.scope === 'World' ?
                     <div>
                         <h3>
                             Stage:
@@ -52,7 +52,7 @@ const GameType = props => {
                     </div>
                     :
                     null
-                }
+                } */}
                 <div>
                     <h3>
                         Difficulty:

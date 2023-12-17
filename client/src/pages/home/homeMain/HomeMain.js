@@ -74,7 +74,7 @@ const HomeMain = props => {
             position3Y: [20, 0],
             position3X: [0, 0],
             position3DelayPerChild: 140,
-            position3TimeOffset: '-=750'
+            position3TimeOffset: '-=750',
         }
 
         let mantisPositionProp = {
@@ -1691,11 +1691,18 @@ const HomeMain = props => {
                 <div className='homeMainAuth'>
                     {props.isAuthenticated ?
                         <div className='homeMainAuthenticated'>
-                            <Link to="/profile">
-                                <button>
+                                <button className='userAvatar'>
                                     <Avatar userAvatar={props.avatarType}/>
                                 </button>
-                            </Link>      
+                                <button
+                                    className='logoutOptionButton'
+                                    onClick={props.logoutClicked}
+                                > 
+                                    Logout
+                                </button>
+                                <Link to="/" className='homeMainAboutAuth'>
+                                    <button>About</button>
+                                </Link>
                         </div>
                         :
                         <div className='homeMainUnauthenticated'>
@@ -1705,9 +1712,18 @@ const HomeMain = props => {
                             <Link to="/login" className='homeMainLogin'>
                                 <button>Login</button>
                             </Link>
+                            <Link to="/" className='homeMainAboutUnauth'>
+                                <button>About</button>
+                            </Link>
                         </div>
-                    }                   
+                    }
+                    {/* <div className='homeAbout'>
+                        <Link to="/" className='homeMainLogin'>
+                            <button>About</button>
+                        </Link>
+                    </div> */}                   
                 </div>
+                
                 <div className='homeMainStartMission'>
                     <button onClick={props.startMissionSelected}>Start Mission</button>
                 </div>

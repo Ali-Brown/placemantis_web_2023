@@ -42,11 +42,29 @@ class Player extends Component {
     }
 
     state = {
+        //initiators
         totalRounds: 0,
         nextRound: 0,
+        rightChoiceCount: 0,
+        rightCountForBonusPoints: 0,
+        displayedBonusPoint: 0,
+        rightCountForBonusLive: 0,
+        totalScore: 0,
+        roundScore: 0,
+        levelScore: 0,
+        displayedRoundScore: "0",
+        nextPlaceName: '',
+        rightRoundChoice: '',
+        clickedOption: null,
+        roundOverReason: null,
+        gameEndReport: null,
 
         allPlaces: [],
         stagePlaces: [],
+        featuredPlaces: [],
+        roundOptions: [],
+        wrongRoundChoices: [],
+
         nextPlace: {
             name: "",
             domID: "",
@@ -68,56 +86,10 @@ class Player extends Component {
             callingCode: "",
             touristAttractions: []
         },
-        featuredPlaces: [], 
-        nextPlaceName: '',
-        
-        roundOptions: [],
-        wrongRoundChoices: [],
-        rightRoundChoice: '',
-        rightChoiceCount: 0,
-        rightUserOption: false,
-        clickedOption: null,
 
-        bonusPointPerRightCount: 125,
-        rightCountForBonusPoints: 0,
-        displayedBonusPoint: 0,
-        rightCountForBonusPointsMaxSimple: 6,
-        rightCountForBonusPointsMaxHard: 8,
-        rightCountForBonusLive: 0,
-        rightCountForBonusLiveMaxSimple: 10,
-        rightCountForBonusLiveMaxHard: 12,
-        bonusPointPerRightCountHard: 250,
-        rightCountForBonusPointsWorldMaxSimple: 10,
-        rightCountForBonusPointsWorldMaxHard: 14,
-        rightCountForBonusLiveWorldMaxSimple: 16,
-        rightCountForBonusLiveWorldMaxHard: 20,
-        showBonusPoint: false,
-        showBonusLive: false,
-
-        showHints: false,
-        showUserRanking: false,
-        showTimerPanelSelect: false,
-        showTimerPanelTimer: false,
-
-        totalScore: 0,
-        roundScore: 0,
-        levelScore: 0,
-        scorePerRound: 1000,
-        displayedScorePerRound: "+1000",
-        simpleWrongChoiceLoss: 500,
-        simpleDisplayedWrongChoiceLoss: "-500",
-        hardWrongChoiceLoss: 1000,
-        hardDisplayedWrongChoiceLoss: "-1,000",
-        displayedRoundScore: "0",
+        //validators
         isRoundScoreLoss: false,
-
-        simpleSecondsPerRound: 12,
-        hardSecondsPerRound: 8,
-        roundTimerWarningSecond: 4,
-
-        roundOverReason: null,
         isRoundInterval: false,
-        roundIntervalSeconds: 2,
 
         hasLive1: true,
         hasLive2: true,
@@ -130,28 +102,36 @@ class Player extends Component {
         restartMission: false,
 
         showBonusMeter: true,
-
-        gameEndReport: null,
         gameOver: false,
+        
+        rightUserOption: false,
+
+        showBonusPoint: false,
+        showBonusLive: false,
+
+        showHints: false,
+        showUserRanking: false,
+        showTimerPanelSelect: false,
+        showTimerPanelTimer: false
     }
 
     componentDidMount() {
         if (this.props.gameType === 'Single') {
-            let bonus = this.state.bonusPointPerRightCount;
-            let pointMaxSimple = this.state.rightCountForBonusPointsMaxSimple;
-            let pointMaxHard = this.state.rightCountForBonusPointsMaxHard;
-            let liveMaxSimple = this.state.rightCountForBonusLiveMaxSimple;
-            let liveMaxHard = this.state.rightCountForBonusLiveMaxHard;
+            let bonus = this.props.roundIntervalSeconds;
+            let pointMaxSimple = this.props.rightCountForBonusPointsMaxSimple;
+            let pointMaxHard = this.props.rightCountForBonusPointsMaxHard;
+            let liveMaxSimple = this.props.rightCountForBonusLiveMaxSimple;
+            let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
             if (this.props.difficulty === 'Hard' ) {
-                bonus = this.state.bonusPointPerRightCountHard;
+                bonus = this.props.bonusPointPerRightCountHard;
             }
 
             if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
-                pointMaxSimple = this.state.rightCountForBonusPointsWorldMaxSimple;
-                pointMaxHard = this.state.rightCountForBonusPointsWorldMaxHard;
-                liveMaxSimple = this.state.rightCountForBonusLiveWorldMaxSimple;
-                liveMaxHard = this.state.rightCountForBonusLiveWorldMaxHard;
+                pointMaxSimple = this.props.rightCountForBonusPointsWorldMaxSimple;
+                pointMaxHard = this.props.rightCountForBonusPointsWorldMaxHard;
+                liveMaxSimple = this.props.rightCountForBonusLiveWorldMaxSimple;
+                liveMaxHard = this.props.rightCountForBonusLiveWorldMaxHard;
             }
             
 
@@ -168,11 +148,11 @@ class Player extends Component {
         } else if (this.props.gameType === 'Multilevel') {
             if (this.props.difficulty === 'Hard') {
 
-                let bonus = this.state.bonusPointPerRightCount;
-                let pointMaxSimple = this.state.rightCountForBonusPointsMaxSimple;
-                let pointMaxHard = this.state.rightCountForBonusPointsMaxHard;
-                let liveMaxSimple = this.state.rightCountForBonusLiveMaxSimple;
-                let liveMaxHard = this.state.rightCountForBonusLiveMaxHard;
+                let bonus = this.props.roundIntervalSeconds;
+                let pointMaxSimple = this.props.rightCountForBonusPointsMaxSimple;
+                let pointMaxHard = this.props.rightCountForBonusPointsMaxHard;
+                let liveMaxSimple = this.props.rightCountForBonusLiveMaxSimple;
+                let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
                 let live4 = true;
                 let live3 = true;
@@ -181,14 +161,14 @@ class Player extends Component {
                 let lifeCount = this.props.lifeCount;
 
                 if (this.props.difficulty === 'Hard' ) {
-                    bonus = this.state.bonusPointPerRightCountHard;
+                    bonus = this.props.bonusPointPerRightCountHard;
                 }
 
                 if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
-                    pointMaxSimple = this.state.rightCountForBonusPointsWorldMaxSimple;
-                    pointMaxHard = this.state.rightCountForBonusPointsWorldMaxHard;
-                    liveMaxSimple = this.state.rightCountForBonusLiveWorldMaxSimple;
-                    liveMaxHard = this.state.rightCountForBonusLiveWorldMaxHard;
+                    pointMaxSimple = this.props.rightCountForBonusPointsWorldMaxSimple;
+                    pointMaxHard = this.props.rightCountForBonusPointsWorldMaxHard;
+                    liveMaxSimple = this.props.rightCountForBonusLiveWorldMaxSimple;
+                    liveMaxHard = this.props.rightCountForBonusLiveWorldMaxHard;
                 }
 
                 if (lifeCount === 3) {
@@ -223,21 +203,21 @@ class Player extends Component {
                 })
             } else {
 
-                let bonus = this.state.bonusPointPerRightCount;
-                let pointMaxSimple = this.state.rightCountForBonusPointsMaxSimple;
-                let pointMaxHard = this.state.rightCountForBonusPointsMaxHard;
-                let liveMaxSimple = this.state.rightCountForBonusLiveMaxSimple;
-                let liveMaxHard = this.state.rightCountForBonusLiveMaxHard;
+                let bonus = this.props.roundIntervalSeconds;
+                let pointMaxSimple = this.props.rightCountForBonusPointsMaxSimple;
+                let pointMaxHard = this.props.rightCountForBonusPointsMaxHard;
+                let liveMaxSimple = this.props.rightCountForBonusLiveMaxSimple;
+                let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
                 if (this.props.difficulty === 'Hard' ) {
-                    bonus = this.state.bonusPointPerRightCountHard;
+                    bonus = this.props.bonusPointPerRightCountHard;
                 }
 
                 if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
-                    pointMaxSimple = this.state.rightCountForBonusPointsWorldMaxSimple;
-                    pointMaxHard = this.state.rightCountForBonusPointsWorldMaxHard;
-                    liveMaxSimple = this.state.rightCountForBonusLiveWorldMaxSimple;
-                    liveMaxHard = this.state.rightCountForBonusLiveWorldMaxHard;
+                    pointMaxSimple = this.props.rightCountForBonusPointsWorldMaxSimple;
+                    pointMaxHard = this.props.rightCountForBonusPointsWorldMaxHard;
+                    liveMaxSimple = this.props.rightCountForBonusLiveWorldMaxSimple;
+                    liveMaxHard = this.props.rightCountForBonusLiveWorldMaxHard;
                 }
 
                 this.setState({
@@ -308,9 +288,10 @@ class Player extends Component {
             // console.log('Running Right Option Routine, total score:', this.state.totalScore, );
         
             let newRightChoiceCount = this.state.rightChoiceCount + 1;
-            let newRoundScore = this.state.scorePerRound;
+            let newRoundScore = this.props.scorePerRound;
             let newTotalScore = this.state.totalScore + newRoundScore;
-            let displayScore = this.state.displayedScorePerRound;
+            //let displayScore = this.props.displayedScorePerRound;
+            let displayScore = "+" + this.props.scorePerRound.toString();
 
             let pointRightCount = this.state.rightCountForBonusPoints;
             let liveRightCount = this.state.rightCountForBonusLive;
@@ -324,18 +305,18 @@ class Player extends Component {
             if (this.props.difficulty === 'Simple') {
                 pointRightCount =  pointRightCount + 1;
                 liveRightCount =  liveRightCount + 1;
-                if (pointRightCount < this.state.rightCountForBonusPointsMaxSimple) {
+                if (pointRightCount < this.props.rightCountForBonusPointsMaxSimple) {
                     showBonusPoint = false;
-                } else if (pointRightCount === this.state.rightCountForBonusPointsMaxSimple) {
-                    bonusPoint = pointRightCount * this.state.bonusPointPerRightCount;
+                } else if (pointRightCount === this.props.rightCountForBonusPointsMaxSimple) {
+                    bonusPoint = pointRightCount * this.props.roundIntervalSeconds;
                     pointRightCount =  0;
                     newTotalScore = newTotalScore + bonusPoint;
                     showBonusPoint = true;
                 }
 
-                if (liveRightCount < this.state.rightCountForBonusLiveMaxSimple) {
+                if (liveRightCount < this.props.rightCountForBonusLiveMaxSimple) {
                     showBonusLive = false;
-                } else if (liveRightCount === this.state.rightCountForBonusLiveMaxSimple) {
+                } else if (liveRightCount === this.props.rightCountForBonusLiveMaxSimple) {
                     liveRightCount =  0;
                     showBonusLive = true;
 
@@ -355,11 +336,11 @@ class Player extends Component {
                 pointRightCount =  pointRightCount + 1;
                 liveRightCount =  liveRightCount + 1;
 
-                if (pointRightCount < this.state.rightCountForBonusPointsMaxHard) {                   
+                if (pointRightCount < this.props.rightCountForBonusPointsMaxHard) {                   
                     showBonusPoint = false;
-                    // console.log("no bonus, ", this.pointRightCount, this.state.rightCountForBonusPointsMaxHard)
-                } else if (pointRightCount === this.state.rightCountForBonusPointsMaxHard) {
-                    bonusPoint = pointRightCount * this.state.bonusPointPerRightCount;
+                    // console.log("no bonus, ", this.pointRightCount, this.props.rightCountForBonusPointsMaxHard)
+                } else if (pointRightCount === this.props.rightCountForBonusPointsMaxHard) {
+                    bonusPoint = pointRightCount * this.props.roundIntervalSeconds;
                     pointRightCount =  0;
                     newTotalScore = newTotalScore + bonusPoint;
                     showBonusPoint = true;
@@ -367,9 +348,9 @@ class Player extends Component {
                     // console.log("bonus added, ", pointRightCount, bonusPoint, this.state.totalScore, newTotalScore, showBonusPoint);
                 }
 
-                if (liveRightCount < this.state.rightCountForBonusLiveMaxHard) {                 
+                if (liveRightCount < this.props.rightCountForBonusLiveMaxHard) {                 
                     showBonusLive = false;
-                } else if (liveRightCount === this.state.rightCountForBonusLiveMaxHard) {
+                } else if (liveRightCount === this.props.rightCountForBonusLiveMaxHard) {
                     liveRightCount =  0;
                     showBonusLive = true;
 
@@ -416,13 +397,13 @@ class Player extends Component {
         } else if (prevProps.roundTimerElapsed === false && this.props.roundTimerElapsed === true && this.state.gameOver === false)   {
             
             let totalScore = this.state.totalScore;
-            let scoreLoss = this.state.simpleWrongChoiceLoss;
-            let displayScore = this.state.simpleDisplayedWrongChoiceLoss;
+            let scoreLoss = this.props.simpleWrongChoiceLoss;
+            let displayScore = "-" + this.props.simpleWrongChoiceLoss.toString();
             let newTotalScore = this.state.totalScore - scoreLoss;
 
             if (this.props.difficulty === 'Hard') {
-                scoreLoss = this.state.hardWrongChoiceLoss;
-                displayScore = this.state.hardDisplayedWrongChoiceLoss;
+                scoreLoss = this.props.hardWrongChoiceLoss;
+                displayScore = "-" + this.props.hardWrongChoiceLoss.toString();
                 newTotalScore = this.state.totalScore - scoreLoss;
             }
 
@@ -635,21 +616,21 @@ class Player extends Component {
 
     initializeSingleGameRestart = () => {
 
-        let bonus = this.state.bonusPointPerRightCount;
-        let pointMaxSimple = this.state.rightCountForBonusPointsMaxSimple;
-        let pointMaxHard = this.state.rightCountForBonusPointsMaxHard;
-        let liveMaxSimple = this.state.rightCountForBonusLiveMaxSimple;
-        let liveMaxHard = this.state.rightCountForBonusLiveMaxHard;
+        let bonus = this.props.roundIntervalSeconds;
+        let pointMaxSimple = this.props.rightCountForBonusPointsMaxSimple;
+        let pointMaxHard = this.props.rightCountForBonusPointsMaxHard;
+        let liveMaxSimple = this.props.rightCountForBonusLiveMaxSimple;
+        let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
         if (this.props.difficulty === 'Hard' ) {
-            bonus = this.state.bonusPointPerRightCountHard;
+            bonus = this.props.bonusPointPerRightCountHard;
         }
 
         if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
-            pointMaxSimple = this.state.rightCountForBonusPointsWorldMaxSimple;
-            pointMaxHard = this.state.rightCountForBonusPointsWorldMaxHard;
-            liveMaxSimple = this.state.rightCountForBonusLiveWorldMaxSimple;
-            liveMaxHard = this.state.rightCountForBonusLiveWorldMaxHard;
+            pointMaxSimple = this.props.rightCountForBonusPointsWorldMaxSimple;
+            pointMaxHard = this.props.rightCountForBonusPointsWorldMaxHard;
+            liveMaxSimple = this.props.rightCountForBonusLiveWorldMaxSimple;
+            liveMaxHard = this.props.rightCountForBonusLiveWorldMaxHard;
         }
         
         this.setState({
@@ -961,13 +942,13 @@ class Player extends Component {
                 wrongChoices.push(domID);
 
                 let totalScore = this.state.totalScore;
-                let scoreLoss = this.state.simpleWrongChoiceLoss;
-                let displayScore = this.state.simpleDisplayedWrongChoiceLoss;
+                let scoreLoss = this.props.simpleWrongChoiceLoss;
+                let displayScore = "-" + this.props.simpleWrongChoiceLoss.toString();
                 let newTotalScore = this.state.totalScore - scoreLoss;
 
                 if (this.props.difficulty === 'Hard') {
-                    scoreLoss = this.state.hardWrongChoiceLoss;
-                    displayScore = this.state.hardDisplayedWrongChoiceLoss;
+                    scoreLoss = this.props.hardWrongChoiceLoss;
+                    displayScore = "-" + this.props.hardWrongChoiceLoss.toString();
                     newTotalScore = this.state.totalScore - scoreLoss;
                 }
 
@@ -1090,7 +1071,21 @@ class Player extends Component {
     render () {
 
         let playerStage;
-        //const {navigation} = this.props;
+        let currentUserRank = 'Visitor';
+        let avatarType = 'Mark';
+
+        if (this.props.user != null) {
+            currentUserRank = this.props.user.rank;
+            avatarType = this.props.user.avatarType;
+            console.log(avatarType);
+        }
+
+        let secondsPerRound = this.props.simpleSecondsPerRound;
+
+        if (this.props.difficulty === "Hard") {
+            secondsPerRound = this.props.hardSecondsPerRound
+        }
+
 
         if (this.props.gameStage === 'Southern Africa' || this.props.levelStage === 'Southern Africa') {
             playerStage = 
@@ -1214,19 +1209,6 @@ class Player extends Component {
             />
         };
 
-        let currentUserRank = 'Visitor';
-
-        if (this.props.userRank) {
-            currentUserRank = this.props.userRank;
-        }
-
-        let secondsPerRound = this.state.simpleSecondsPerRound;
-
-        if (this.props.difficulty === "Hard") {
-            secondsPerRound = this.state.hardSecondsPerRound
-        }
-
-
         let printedScore = numberWithCommas(this.state.totalScore);
 
         let options =
@@ -1273,7 +1255,7 @@ class Player extends Component {
                                 <div> 
                                     <div className={styles.avatar}>
                                         <Avatar 
-                                            avatarType='reed'
+                                            userAvatar={avatarType}
                                         />
                                     </div>
                                 </div>
@@ -1299,7 +1281,7 @@ class Player extends Component {
                                         />
                                         <div className={styles.intervalBoardTime}>
                                             <Timer 
-                                                    seconds={this.state.roundIntervalSeconds}
+                                                    seconds={this.props.roundIntervalSeconds}
                                                     onRoundIntervalTimerEnds={this.roundIntervalEnds}
                                                     timerType='roundIntervalTimer'
                                                     invisible
@@ -1312,11 +1294,11 @@ class Player extends Component {
                                 { this.state.showBonusMeter ?
                                     <BonusMeter 
                                         pointCount={this.state.rightCountForBonusPoints}
-                                        pointCountMaxSimple={this.state.rightCountForBonusPointsMaxSimple}
-                                        pointCountMaxHard={this.state.rightCountForBonusPointsMaxHard}
+                                        pointCountMaxSimple={this.props.rightCountForBonusPointsMaxSimple}
+                                        pointCountMaxHard={this.props.rightCountForBonusPointsMaxHard}
                                         liveCount={this.state.rightCountForBonusLive}
-                                        liveCountMaxSimple={this.state.rightCountForBonusLiveMaxSimple}
-                                        liveCountMaxHard={this.state.rightCountForBonusLiveMaxHard}
+                                        liveCountMaxSimple={this.props.rightCountForBonusLiveMaxSimple}
+                                        liveCountMaxHard={this.props.rightCountForBonusLiveMaxHard}
                                         difficulty={this.props.difficulty}
                                     />
                                     :
@@ -1360,7 +1342,7 @@ class Player extends Component {
                             showTimer={this.state.showTimerPanelTimer}
                             scoreLoss={this.state.isRoundScoreLoss}
                             secondsPerRound={secondsPerRound}
-                            warningSecond={this.state.roundTimerWarningSecond}
+                            warningSecond={this.props.roundTimerWarningSecond}
                             gamePaused={this.state.gamePaused}
                         />
                     </div>
@@ -1403,6 +1385,26 @@ class Player extends Component {
 
 const mapStateToProps = state => {
     return {
+        //FROM GAME GLOBAL STATE
+        //play parameters
+        scorePerRound: state.game.playParams.scorePerRound,
+        simpleWrongChoiceLoss: state.game.playParams.simpleWrongChoiceLoss,
+        hardWrongChoiceLoss: state.game.playParams.hardWrongChoiceLoss,
+        simpleSecondsPerRound: state.game.playParams.simpleSecondsPerRound,
+        hardSecondsPerRound: state.game.playParams.hardSecondsPerRound,
+        roundTimerWarningSecond: state.game.playParams.roundTimerWarningSecond,
+        roundIntervalSeconds: state.game.playParams.roundIntervalSeconds,
+        bonusPointPerRightCount: state.game.playParams.bonusPointPerRightCount,
+        rightCountForBonusPointsMaxSimple: state.game.playParams.rightCountForBonusPointsMaxSimple,
+        rightCountForBonusPointsMaxHard: state.game.playParams.rightCountForBonusPointsMaxHard,
+        rightCountForBonusLiveMaxSimple: state.game.playParams.rightCountForBonusLiveMaxSimple,
+        rightCountForBonusLiveMaxHard: state.game.playParams.rightCountForBonusLiveMaxHard,
+        bonusPointPerRightCountHard: state.game.playParams.bonusPointPerRightCountHard,
+        rightCountForBonusPointsWorldMaxSimple: state.game.playParams.rightCountForBonusPointsWorldMaxSimple,
+        rightCountForBonusPointsWorldMaxHard: state.game.playParams.rightCountForBonusPointsWorldMaxHard,
+        rightCountForBonusLiveWorldMaxSimple: state.game.playParams.rightCountForBonusLiveWorldMaxSimple,
+        rightCountForBonusLiveWorldMaxHard: state.game.playParams.rightCountForBonusLiveWorldMaxHard,
+
         gameType: state.game.gameData.type,
         gameStage: state.game.gameData.stage,
         difficulty: state.game.gameData.difficulty, 
@@ -1417,9 +1419,10 @@ const mapStateToProps = state => {
         completedMultilevelRounds: state.game.completedMultilevelRounds,
         shuffledStages: state.game.shuffledStages,
         screenTrackerActive: state.game.screenTrackerActive,
-        // below states coming from auth global state
-        isAuthenticated: false,
-        user: null,
+
+        // FROM AUTH GLOBAL STATE
+        isAuthenticated: state.auth.isAuthenticated,
+        user: state.auth.user,
         userRank: "Place Marshal",
     }
 }

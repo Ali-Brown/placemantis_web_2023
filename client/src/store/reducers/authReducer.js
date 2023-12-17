@@ -24,6 +24,14 @@ const initialState = {
     isAuthenticated: false,
 }
 
+const setAuthenticationFromLocalStorage = (state, action) => {
+    return {
+        ...state,
+        user: action.user,
+        isAuthenticated: true
+    }
+}
+
 const checkUsernameAvailabilityStart = (state, action) => {
     return {
         ...state,
@@ -51,6 +59,16 @@ const checkUsernameAvailabilityFail = (state, action) => {
         checkUsernameSuccess: false,
         checkUsernameSuccessMessage: null, 
         checkUsernameFail: true,
+    }
+}
+
+const resetUsernameCheck = (state, action) => {
+    return {
+        ...state,
+        checkUsernameLoading: false,
+        checkUsernameSuccess: false,
+        checkUsernameSuccessMessage: null, 
+        checkUsernameFail: false,
     }
 }
 
@@ -128,13 +146,13 @@ const loginUserSuccess = (state, action) => {
     return {
         ...state,
         loginLoading: false,
-        loginSuccess: true,
+        loginSuccess: action.isLoggedIn,
         loginFail: false,
 
         loginSuccessMessage: action.successMessage,
         user: action.user,
         loginFailMessage: null,
-        isAuthenticated: true
+        isAuthenticated: action.isAuthenticated
     }
 }
 
@@ -162,6 +180,16 @@ const resetLoginPage = (state, action) => {
     }
 }
 
+const logout = (state, action) => {
+    return {
+        ...state,
+        user: null,
+        isAuthenticated: false
+    }
+}
+
+
+
 const fetchCurrentUser = (state, action) => {
     return {
         ...state,
@@ -172,6 +200,9 @@ const fetchCurrentUser = (state, action) => {
 
 const reducer = (state=initialState, action) => {
     switch (action.type) {
+        //initializations from local storage
+        case actionTypes.SET_AUTHENTICATION_FROM_LOCAL_STORAGE: return setAuthenticationFromLocalStorage(state, action);
+
         case actionTypes.USER_AVATAR_SELECTED: 
             return setUserAvatarSelection(state, action);
         case actionTypes.CHECK_USERNAME_AVAILABILITY_START: 
@@ -180,6 +211,8 @@ const reducer = (state=initialState, action) => {
             return checkUsernameAvailabilitySuccess(state, action);
         case actionTypes.CHECK_USERNAME_AVAILABILITY_FAIL: 
             return checkUsernameAvailabilityFail(state, action);
+        case actionTypes.RESET_USERNAME_AVAILABILITY: 
+            return resetUsernameCheck(state, action);
         case actionTypes.REGISTER_USER_START: 
             return registerUserStart(state, action);
         case actionTypes.REGISTER_USER_SUCCESS: 
@@ -198,7 +231,9 @@ const reducer = (state=initialState, action) => {
             return resetLoginPage(state, action);
         case actionTypes.FETCH_CURRENT_USER:
             return fetchCurrentUser(state, action);
-        
+        case actionTypes.LOGOUT_USER:
+            return logout(state, action);
+
         default: return state;
     }
 }
