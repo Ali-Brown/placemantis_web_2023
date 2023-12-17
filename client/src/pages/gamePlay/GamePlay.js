@@ -7,7 +7,7 @@ import {shuffleArray} from '../../utilities/utilities';
 import Player from './player/Player';
 import PrePlayer from './prePlayer/PrePlayer';
 import Timer from './Timer';
-import withRouter from '../../withRouter';
+
 
 class GamePlay extends Component {
 
@@ -29,10 +29,6 @@ class GamePlay extends Component {
         stagesShuffled.unshift('Southern Africa');
         stagesShuffled.push('World');
 
-        if (this.props.gameData.type === null) {
-            this.props.router.navigate('/');
-        }
-
         if (this.props.gameData.type === 'ResumeSavedGame') {
             this.props.onShowLevelsDialogue();
         } else {
@@ -53,6 +49,7 @@ class GamePlay extends Component {
     componentWillUnmount() {
         this.props.onResetGameState();
     }
+
 
     render() {
 
@@ -136,5 +133,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-//export default connect(mapStateToProps, mapDispatchToProps)(withRouter(GamePlay));
-export default connect(mapStateToProps, mapDispatchToProps)( withRouter(GamePlay));
+export default connect(mapStateToProps, mapDispatchToProps)(GamePlay);

@@ -25,9 +25,12 @@ export {
 export {
     userAvatarSelected,
     checkUsernameAvailabilty,
+    resetUsernameAvailabilty,
     registerUser,
     resetRegisterPage,
     loginUser,
     resetLoginPage,
-    fetchCurrentUser
+    fetchCurrentUser,
+    setAuthenticationFromLocalStorage,
+    logoutUser
 } from './authActions';

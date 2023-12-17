@@ -1,82 +1,100 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './moderator.scss';
 import GameType from './dialogues/GameType';
 import {connect} from 'react-redux';
 import Levels from './dialogues/Levels';
 import GameOver from './dialogues/GameOver';
 import LevelOver from './dialogues/LevelOver';
+import { useNavigate } from "react-router-dom";
+
 
 const Moderator = props => {
+
+    const history = useNavigate();
+
+    useEffect(() => {
+        //this operation allows browser to route to home
+        //when browser page is manually restarted during gameplay
+        if (props.gameData.type === null) {
+            history('/');
+        }
+    });
+
     return(
         <div className="gameModerator">
-            <div className="gameModeratorDialogues">
-                { props.showGameType ?
-                    <GameType 
-                        type={props.gameType}
-                        stage={props.gameStage}
-                        scope={props.gameScope}
-                        difficulty={props.gameDifficulty}
-                        saved={props.savedGame}
-                    />
-                    :
-                    null
-                }
-                { props.showLevels ?
-                    <Levels
-                        level={props.level}
-                        shuffledStages={props.shuffledStages}
-                    />
-                    :
-                    null
-                }
-                { props.showGameOver ?
-                    <GameOver 
-                        gameData={props.gameData}
-                        totalStageRounds={props.totalStageRounds}
-                        stageRoundsCompleted={props.stageRoundsCompleted}
-                        totalGameScore={props.totalGameScore}
-                        totalMultilevelRounds={props.totalMultilevelRounds}
-                        completedMultilevelRounds={props.completedMultilevelRounds}
-                        playedType={props.playedType}
-                        playedStage={props.playedStage}
-                        playedDifficulty={props.playedDifficulty}
-                        isAuthenticated={props.isAuthenticated}
-                        gameTypeUserBest={props.gameTypeUserBest}
-                        gameTypeOverallBest={props.gameTypeOverallBest}
-                        postGameScoreSuccess={props.postGameScoreSuccess}
-                        postGameScoreFail={props.postGameScoreFail}
-                        postGameScoreLoading={props.postGameScoreLoading}
-                    />
-                    :
-                    null
-                }
-                { props.showLevelOver ?
-                    <LevelOver 
-                        gameData={props.gameData}
-                        totalStageRounds={props.totalStageRounds}
-                        stageRoundsCompleted={props.stageRoundsCompleted}
-                        totalGameScore={props.totalGameScore}
-                        level={props.level}
-                        levelScore={props.levelScore}
-                        levelStage={props.levelStage}
-                        levelRounds={props.levelRounds}
-                        completedLevelRounds={props.completedLevelRounds}
-                        lifeCount={props.lifeCount}
-                        levelStages={props.shuffledStages}
-                        playedType={props.playedType}
-                        playedStage={props.playedStage}
-                        playedDifficulty={props.playedDifficulty}
-                        isAuthenticated={props.isAuthenticated}
-                        gameTypeUserBest={props.gameTypeUserBest}
-                        gameTypeOverallBest={props.gameTypeOverallBest}
-                        saveAndExitLoading={props.saveAndExitLoading}
-                        saveAndExitSuccess={props.saveAndExitSuccess}
-                        saveAndExitFail={props.saveAndExitFail}
-                    />
-                    :
-                    null
-                }
-            </div>
+            {
+                props.gameData.type != null ?
+                    <div className="gameModeratorDialogues">
+                    { props.showGameType && props.gameData.type != null ?
+                        <GameType 
+                            type={props.gameType}
+                            stage={props.gameStage}
+                            scope={props.gameScope}
+                            difficulty={props.gameDifficulty}
+                            saved={props.savedGame}
+                        />
+                        :
+                        null
+                    }
+                    { props.showLevels ?
+                        <Levels
+                            level={props.level}
+                            shuffledStages={props.shuffledStages}
+                        />
+                        :
+                        null
+                    }
+                    { props.showGameOver ?
+                        <GameOver 
+                            gameData={props.gameData}
+                            totalStageRounds={props.totalStageRounds}
+                            stageRoundsCompleted={props.stageRoundsCompleted}
+                            totalGameScore={props.totalGameScore}
+                            totalMultilevelRounds={props.totalMultilevelRounds}
+                            completedMultilevelRounds={props.completedMultilevelRounds}
+                            playedType={props.playedType}
+                            playedStage={props.playedStage}
+                            playedDifficulty={props.playedDifficulty}
+                            isAuthenticated={props.isAuthenticated}
+                            gameTypeUserBest={props.gameTypeUserBest}
+                            gameTypeOverallBest={props.gameTypeOverallBest}
+                            postGameScoreSuccess={props.postGameScoreSuccess}
+                            postGameScoreFail={props.postGameScoreFail}
+                            postGameScoreLoading={props.postGameScoreLoading}
+                        />
+                        :
+                        null
+                    }
+                    { props.showLevelOver ?
+                        <LevelOver 
+                            gameData={props.gameData}
+                            totalStageRounds={props.totalStageRounds}
+                            stageRoundsCompleted={props.stageRoundsCompleted}
+                            totalGameScore={props.totalGameScore}
+                            level={props.level}
+                            levelScore={props.levelScore}
+                            levelStage={props.levelStage}
+                            levelRounds={props.levelRounds}
+                            completedLevelRounds={props.completedLevelRounds}
+                            lifeCount={props.lifeCount}
+                            levelStages={props.shuffledStages}
+                            playedType={props.playedType}
+                            playedStage={props.playedStage}
+                            playedDifficulty={props.playedDifficulty}
+                            isAuthenticated={props.isAuthenticated}
+                            gameTypeUserBest={props.gameTypeUserBest}
+                            gameTypeOverallBest={props.gameTypeOverallBest}
+                            saveAndExitLoading={props.saveAndExitLoading}
+                            saveAndExitSuccess={props.saveAndExitSuccess}
+                            saveAndExitFail={props.saveAndExitFail}
+                        />
+                        :
+                        null
+                    }
+                </div> 
+                : 
+                null
+            }
         </div>
     )
 }

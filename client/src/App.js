@@ -7,10 +7,17 @@ import * as actions from './store/actions/index';
 
 const Home = lazy(() => import('./pages/home/Home'));
 const GamePlay = lazy(() => import('./pages/gamePlay/GamePlay'));
-//const Register = lazy(() => import('./pages/register/Register'));
-//const Login = lazy(() => import('./pages/login/Login'));
+const Register = lazy(() => import('./pages/register/Register'));
+const Login = lazy(() => import('./pages/login/Login'));
 
-const RouteLoading = 'Page Loading...';
+
+const LoadIndicator = () => (
+  <div className="loadIndicator">
+      <div className="loadText">
+          Loading . . .
+      </div>
+  </div>
+)  
 
 const NotFound = ({ location }) => (
   <div>
@@ -18,30 +25,23 @@ const NotFound = ({ location }) => (
   </div>
 );
 
-const Profile = () => {
-  return(
-    <div>
-      Profile Page Shows Here
-    </div>
-  )
-}
 
 const App = props => {
 
   useEffect(() => {
+    //TO-DO: PENDING BASK END CALL
     //props.onFetchCurrentUser();
     return () => {}
   })
 
   let routes = (
-    <Suspense fallback={RouteLoading}>
+    <Suspense fallback={<LoadIndicator />}>
       <Routes>
-        <Route exact path="/" element={<Home />}/>
-        <Route extact path="/profile" element={<Profile />}/>
+        <Route exact path="/" element={<Home/>}/>
         <Route extact path="/game_play" element={<GamePlay />}/>
-        {/* <Route extact path="/register" component={Register}/>
-        <Route extact path="/login" component={Login}/> */}
-        <Route component={NotFound} />
+        <Route extact path="/register" element={<Register />}/>
+        <Route extact path="/login" element={<Login />}/>
+        <Route element={NotFound} />
       </Routes>
     </Suspense>
   )
