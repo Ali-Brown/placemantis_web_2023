@@ -124,7 +124,7 @@ class Player extends Component {
             let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
             if (this.props.difficulty === 'Hard' ) {
-                bonus = this.props.bonusPointPerRightCountHard;
+                bonus = this.props.hardBonusPoint;
             }
 
             if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -136,7 +136,7 @@ class Player extends Component {
             
 
             this.setState({
-                bonusPointPerRightCount: bonus,
+                simpleBonusPoint: bonus,
                 rightCountForBonusPointsMaxSimple: pointMaxSimple,
                 rightCountForBonusPointsMaxHard: pointMaxHard,
                 rightCountForBonusLiveMaxSimple: liveMaxSimple,
@@ -161,7 +161,7 @@ class Player extends Component {
                 let lifeCount = this.props.lifeCount;
 
                 if (this.props.difficulty === 'Hard' ) {
-                    bonus = this.props.bonusPointPerRightCountHard;
+                    bonus = this.props.hardBonusPoint;
                 }
 
                 if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -189,7 +189,7 @@ class Player extends Component {
                 }
 
                 this.setState({ 
-                    bonusPointPerRightCount: bonus,
+                    simpleBonusPoint: bonus,
                     rightCountForBonusPointsMaxSimple: pointMaxSimple,
                     rightCountForBonusPointsMaxHard: pointMaxHard,
                     rightCountForBonusLiveMaxSimple: liveMaxSimple,
@@ -210,7 +210,7 @@ class Player extends Component {
                 let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
                 if (this.props.difficulty === 'Hard' ) {
-                    bonus = this.props.bonusPointPerRightCountHard;
+                    bonus = this.props.hardBonusPoint;
                 }
 
                 if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -221,7 +221,7 @@ class Player extends Component {
                 }
 
                 this.setState({
-                    bonusPointPerRightCount: bonus,
+                    simpleBonusPoint: bonus,
                     rightCountForBonusPointsMaxSimple: pointMaxSimple,
                     rightCountForBonusPointsMaxHard: pointMaxHard,
                     rightCountForBonusLiveMaxSimple: liveMaxSimple,
@@ -308,7 +308,7 @@ class Player extends Component {
                 if (pointRightCount < this.props.rightCountForBonusPointsMaxSimple) {
                     showBonusPoint = false;
                 } else if (pointRightCount === this.props.rightCountForBonusPointsMaxSimple) {
-                    bonusPoint = pointRightCount * this.props.roundIntervalSeconds;
+                    bonusPoint = this.props.simpleBonusPoint;
                     pointRightCount =  0;
                     newTotalScore = newTotalScore + bonusPoint;
                     showBonusPoint = true;
@@ -340,7 +340,7 @@ class Player extends Component {
                     showBonusPoint = false;
                     // console.log("no bonus, ", this.pointRightCount, this.props.rightCountForBonusPointsMaxHard)
                 } else if (pointRightCount === this.props.rightCountForBonusPointsMaxHard) {
-                    bonusPoint = pointRightCount * this.props.roundIntervalSeconds;
+                    bonusPoint = this.props.hardBonusPoint;
                     pointRightCount =  0;
                     newTotalScore = newTotalScore + bonusPoint;
                     showBonusPoint = true;
@@ -623,7 +623,7 @@ class Player extends Component {
         let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
         if (this.props.difficulty === 'Hard' ) {
-            bonus = this.props.bonusPointPerRightCountHard;
+            bonus = this.props.hardBonusPoint;
         }
 
         if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -670,7 +670,7 @@ class Player extends Component {
             rightUserOption: false,
             clickedOption: null,
 
-            bonusPointPerRightCount: bonus,
+            simpleBonusPoint: bonus,
             rightCountForBonusPoints: 0,
             displayedBonusPoint: 0,
             rightCountForBonusPointsMaxSimple: pointMaxSimple,
@@ -1394,12 +1394,12 @@ const mapStateToProps = state => {
         hardSecondsPerRound: state.game.playParams.hardSecondsPerRound,
         roundTimerWarningSecond: state.game.playParams.roundTimerWarningSecond,
         roundIntervalSeconds: state.game.playParams.roundIntervalSeconds,
-        bonusPointPerRightCount: state.game.playParams.bonusPointPerRightCount,
+        simpleBonusPoint: state.game.playParams.simpleBonusPoint,
         rightCountForBonusPointsMaxSimple: state.game.playParams.rightCountForBonusPointsMaxSimple,
         rightCountForBonusPointsMaxHard: state.game.playParams.rightCountForBonusPointsMaxHard,
         rightCountForBonusLiveMaxSimple: state.game.playParams.rightCountForBonusLiveMaxSimple,
         rightCountForBonusLiveMaxHard: state.game.playParams.rightCountForBonusLiveMaxHard,
-        bonusPointPerRightCountHard: state.game.playParams.bonusPointPerRightCountHard,
+        hardBonusPoint: state.game.playParams.hardBonusPoint,
         rightCountForBonusPointsWorldMaxSimple: state.game.playParams.rightCountForBonusPointsWorldMaxSimple,
         rightCountForBonusPointsWorldMaxHard: state.game.playParams.rightCountForBonusPointsWorldMaxHard,
         rightCountForBonusLiveWorldMaxSimple: state.game.playParams.rightCountForBonusLiveWorldMaxSimple,

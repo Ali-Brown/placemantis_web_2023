@@ -33,11 +33,11 @@ const GameOver = props => {
 
     if (props.difficulty === 'Simple') {
         let nonBonusedScore = props.scorePerRound * totalRounds;
-        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxSimple) * props.bonusPointPerRightCount; 
+        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxSimple) * props.simpleBonusPoint; 
         highestPossibleScore = nonBonusedScore + bonusedScore;
     } else {
         let nonBonusedScore = props.scorePerRound * totalRounds;
-        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxHard) * props.bonusPointPerRightCountHard; 
+        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxHard) * props.hardBonusPoint; 
         highestPossibleScore = nonBonusedScore + bonusedScore;
     }
 
@@ -196,8 +196,8 @@ const mapStateToProps = state => {
         scorePerRound: state.game.playParams.scorePerRound,
         rightCountForBonusPointsMaxSimple: state.game.playParams.rightCountForBonusPointsMaxSimple,
         rightCountForBonusPointsMaxHard: state.game.playParams.rightCountForBonusPointsMaxHard,
-        bonusPointPerRightCount: state.game.playParams.bonusPointPerRightCount,
-        bonusPointPerRightCountHard: state.game.playParams.bonusPointPerRightCountHard,
+        simpleBonusPoint: state.game.playParams.simpleBonusPoint,
+        hardBonusPoint: state.game.playParams.hardBonusPoint,
     }
 }
 
