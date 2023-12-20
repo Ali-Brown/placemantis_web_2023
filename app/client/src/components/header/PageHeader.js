@@ -1,16 +1,22 @@
 import React, {useEffect} from 'react';
 import './header.scss';
-import {positionX} from '../../anime/position';
+//import {positionX} from '../../anime/position';
 import {staggerScaleParts} from '../../anime/scale';
 
 const PageHeader = props => {
 
     useEffect(() => {
-        const positionProp = {
-            animatedClass: '#page_header_go_back_button',
-            duration: 1500,
-            translateX: [-10, 0]
-        }
+
+        /*  const positionProp = {
+                animatedClass: '.pageHeaderGoBack',
+                duration: 1500,
+                translateX: [-10, 0],
+                loop: true
+            }
+
+        positionX(positionProp);
+        */
+
 
         const scaleProp = {
             animatedClass: '.pageHeaderHeading svg g',
@@ -21,11 +27,11 @@ const PageHeader = props => {
             delayPerChild: 100
         }
 
-        positionX(positionProp);
         staggerScaleParts(scaleProp);
 
         return() => {}
     }, []);
+    
 
     return (
         <div className='pageHeader'>
@@ -38,7 +44,7 @@ const PageHeader = props => {
             </div>
             <div className='pageHeaderHeading'>
                 {props.children}
-            </div>
+            </div> 
         </div>
     )
 }

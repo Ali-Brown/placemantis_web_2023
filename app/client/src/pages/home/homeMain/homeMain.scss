@@ -1,5 +1,5 @@
 @import "../../../sass_variables.scss";
-
+//HOME MAIN BODY FLEX: CONTAINER
 .homeMain {
     display: flex;
     flex-flow: column;
@@ -8,6 +8,7 @@
 
 }
 
+//HOME MAIN BODY FLEX: ITEM 1
 .homeMainDisplayArt {
     flex: 0 1 78%;
     display: flex;
@@ -29,7 +30,8 @@
 #home_main_large_blocks_stroke path{
     stroke-width: 4;
 }
-
+//HOME MAIN BODY FLEX: ITEM 2
+// HOME MENU BAR FLEX CONTAINER
 .homeMainMenuBar {
     flex: 0 0 16%;
     display: flex;
@@ -40,31 +42,63 @@
         padding: 0 $frame-30;
         box-sizing: border-box;
     }
-}
 
-.homeMainMenuBar {
-    button {
+    /* button {
         @include font-b48;
-        //color: $light-purple;
-        // text-transform: uppercase;
         padding: 0;
         background: none;
         border: none;
-        //cursor: pointer;
-    }
+    } */
 }
 
-/* .homeMainStartMission {
-    flex: 0 0 53%;
-    color: $green;
+// HOME MENU BAR FLEX: ITEM 1(option a): UNAUTHENTICATED FLEX CONTAINER
+.homeMainUnauthenticated {
+    @include by-parent;
+    display: flex;
+    text-align: left;
 
     button {
         font-family: 'Changa', sans-serif;
+        color: $light-purple;
+        cursor: pointer;
+        @include font-b48;
+        padding: 0;
+        background: none;
+        border: none;
     }
-} */
+}
 
+//UNAUTHENTICATED FLEX: ITEMS 1, 2, 3
+.homeMainLogin {
+    //flex: 0 0 50%;
+    flex: 0 0 24%;
+}
+
+.homeMainRegister {
+    //flex: 0 0 50%;
+    flex: 0 0 33%;
+}
+
+.homeMainAboutUnauth {
+    //flex: 0 0 50%;
+    flex: 0 0 33%;
+
+    button {
+        color: $green;
+    }
+}
+
+// MENU BAR FLEX ITEMS START
+.homeMainAuth {
+    flex: 0 0 48%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+//HOME MENU BAR FLEX: ITEM 2
 .homeMainStartMission {
-    flex: 0 0 53%;
+    //flex: 0 0 53%;
+    flex: 0 0 44%;
     text-align: right;
 
     button {
@@ -79,37 +113,9 @@
     }
 }
 
-.homeMainAuth {
-    flex: 0 0 38%;
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-
-.homeMainUnauthenticated {
-    @include by-parent;
-    display: flex;
-    text-align: left;
-
-    button {
-        font-family: 'Changa', sans-serif;
-        color: $light-purple;
-        cursor: pointer;
-    }
-}
-
-.homeMainLogin {
-    flex: 0 0 50%;
-}
-
-.homeMainRegister {
-    flex: 0 0 50%;
-}
-
-
-
+//HOME MENU BAR FLEX: ITEM 3
 .homeMainAudio {
-    flex: 0 0 9%;
+    flex: 0 0 8%;
     // position: relative;
 
     div {
@@ -135,47 +141,54 @@
     }
 }
 
-/* .homeMainAuthenticated {
-    flex: 0 0 50%;
-} */
-.userAvatar {
-    cursor: auto;
-}
-
+//HOME MENU BAR FLEX: ITEM 1(option b): AUTHENTICATED FLEX CONTAINER
 .homeMainAuthenticated {
     display: flex;
     flex-direction: row;
     flex: 0 0 50%;
 
-    .logoutOption {
+    .logoutOptionButton {
         display: flex;
         align-items: center;
         @include font-b48;
         color: $light-purple;
-        font-family: 'Changa', sans-serif;
-        padding: $frame-30;
-        background: none;
-        border: none;
-        
-        cursor: pointer;
+        padding: $frame-60;
     }
 
-    button {
+    .userAvatar {
         padding: 0;
         display: flex;
         background: none;
         border: none;
-        width: 12vh;
+        width: 8vw;
         border: $frame-6 solid $light-purple;
         border-radius: 50%;
+        cursor: auto;
     }
     
     svg {
         width: 100%;
     }
+
+    .homeMainAboutAuth {
+        display: flex;
+        text-decoration: none;
+
+        button {
+            color: $green;
+        }
+    }
+
+    button {
+        font-family: 'Changa', sans-serif;
+        cursor: pointer;
+        @include font-b48;
+        padding: 0;
+        background: none;
+        border: none;
+        @include font-b48;
+    }
 }
-
-
 
 .homeMainAudioOn {
     path {
@@ -189,6 +202,7 @@
     }
 }
 
+//HOME MAIN BODY FLEX: ITEM 3
 .homeMainFooter {
     flex: 0 0 6%;
     @include font-r30;

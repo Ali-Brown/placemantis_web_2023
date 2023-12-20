@@ -1,0 +1,5 @@
+@import '../../sass_variables.scss';
+
+.about {
+    @include by-parent;
+}

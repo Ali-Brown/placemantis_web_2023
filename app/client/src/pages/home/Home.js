@@ -48,6 +48,7 @@ const Home = props => {
             props.onSetGameData(gameData); 
             history('/game_play');           
         }
+        // eslint-disable-next-line
     }, [startOrResumeMission]);
 
     const optionStartMission = () => {

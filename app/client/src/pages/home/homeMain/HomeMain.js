@@ -1695,11 +1695,14 @@ const HomeMain = props => {
                                     <Avatar userAvatar={props.avatarType}/>
                                 </button>
                                 <button
-                                    className='logoutOption'
+                                    className='logoutOptionButton'
                                     onClick={props.logoutClicked}
                                 > 
                                     Logout
                                 </button>
+                                <Link to="/about" className='homeMainAboutAuth'>
+                                    <button>About</button>
+                                </Link>
                         </div>
                         :
                         <div className='homeMainUnauthenticated'>
@@ -1709,9 +1712,13 @@ const HomeMain = props => {
                             <Link to="/login" className='homeMainLogin'>
                                 <button>Login</button>
                             </Link>
+                            <Link to="/about" className='homeMainAboutUnauth'>
+                                <button>About</button>
+                            </Link>
                         </div>
                     }                   
                 </div>
+                
                 <div className='homeMainStartMission'>
                     <button onClick={props.startMissionSelected}>Start Mission</button>
                 </div>

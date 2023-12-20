@@ -1,0 +1,579 @@
+@import '../../../sass_variables.scss';
+
+
+
+.aboutPage {
+    display: flex;
+    flex-flow: column;
+    @include by-parent;
+    background: $dark-blue;
+}
+
+.aboutPageHeader {
+    flex: 0 0 15%;
+    box-sizing: border-box;
+    display: flex;
+    padding: $frame-12;
+    max-height: 25vh;
+    justify-content: center;
+}
+
+.aboutPartBody {
+    flex: 0 0 75%;
+    box-sizing: border-box;
+    max-height: 85vh;
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    @include by-parent;
+    align-items: stretch;
+    padding: $frame-48;
+
+    div {
+        box-sizing: border-box;
+    }
+}
+//Developer
+.aboutDeveloperCol1 {
+    flex: 0 0 25%;
+    //border: $frame-3 solid $green;
+}
+
+.aboutDeveloperCol2 {
+    flex: 0 0 50%;
+    border: $frame-3 solid $green;
+    background-color: $blue3;
+
+    .developerBio {
+        display: flex;
+        flex-flow: column;
+        @include by-parent;
+        align-items: stretch;
+    }
+
+    .developerImgContainer {
+        flex: 0 0 55%;
+        text-align: center;
+        padding-top: $frame-24;
+        box-sizing: border-box;
+
+        h3 {
+            color: $green;
+            @include font-m48;
+            line-height: 1;
+            margin: 0;
+        }
+
+        div {
+            color: $light-purple;
+            @include font-m30;
+            line-height: 1
+        }
+
+        img {
+            width: 20vh;
+            padding: $frame-3;
+            box-sizing: border-box;
+            border: $frame-6 solid $light-purple;
+            border-radius: 50%;
+        }
+    }
+
+    .developerContacts {
+        flex: 0 0 45%;
+        padding: $frame-24;
+        box-sizing: border-box;
+        color: $light-purple;
+
+        > div {
+            height: 30px;
+            display: flex;
+            margin-bottom: $frame-24;
+        }
+
+        img {
+            height: 60%;
+            align-self: center;
+        }
+
+        span {
+            @include font-m30;
+            align-self: center;
+            padding-left: $frame-36; 
+            text-align: left;
+        }
+    }
+}
+
+.aboutDeveloperCol3 {
+    flex: 0 0 25%;
+    //border: $frame-3 solid $green;
+}
+
+//Gameplay
+.aboutGameplayContainer {
+    border: $frame-3 solid $green;
+    display: flex;
+    flex-flow: row;
+    @include by-parent;
+    align-items: stretch;
+    padding: $frame-24;
+    background-color: $blue3;
+
+    div h3 {
+        color: $green;
+        @include font-m48;
+        line-height: 1;
+        margin: 0;
+        text-align: center;
+    }
+
+    div p {
+        @include font-r36;
+        color: $light-purple;
+
+        img {
+            width: $frame-36;
+            vertical-align: bottom;
+            //padding-left: $frame-12;
+            
+        }
+    }
+}
+
+.aboutGameplayCol1 {
+    flex: 0 0 33.33%;
+    border-right: $frame-3 solid $green;
+    text-align: left;
+    padding: $frame-24;
+}
+
+.aboutGameplayCol2 {
+    flex: 0 0 33.33%;
+    border-right: $frame-3 solid $green;
+    text-align: left;
+    padding: $frame-24;
+}
+
+.aboutGameplayCol3 {
+    flex: 0 0 33.33%;
+    text-align: left;
+    padding: $frame-24;
+    //border: $frame-3 solid $green;
+}
+
+.aboutGameplayContainer {
+    h3 {
+        @include font-b48;
+        color: $green;
+    }
+
+    p {
+        @include font-r36;
+        color: $light-purple;
+    }
+}
+
+//Architecture
+.aboutArchitectureCol1 {
+    flex: 0 0 100%;
+    border: $frame-3 solid $green;
+    background-color: $blue3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 80%;
+    }
+}
+
+
+//Stack
+.aboutStackContainer {
+    border: $frame-3 solid $green;
+    display: flex;
+    flex-flow: row;
+    @include by-parent;
+    align-items: stretch;
+    padding: $frame-24;
+    background-color: $blue3;
+
+    div h3 {
+        color: $green;
+        @include font-m48;
+        line-height: 1;
+        margin: 0;
+        text-align: center;
+    }
+
+    div p {
+        @include font-r36;
+        color: $light-purple;
+
+        img {
+            width: $frame-36;
+            vertical-align: bottom;
+            //padding-left: $frame-12;
+            
+        }
+    }
+
+    div p span {
+        color: $white;
+        @include font-m36
+    }
+
+}
+.aboutStackCol1 {
+    flex: 0 0 33.33%;
+    border-right: $frame-3 solid $green;
+    text-align: left;
+    padding: $frame-24;
+}
+
+.aboutStackCol2 {
+    flex: 0 0 33.33%;
+    border-right: $frame-3 solid $green;
+    text-align: left;
+    padding: $frame-24;
+}
+
+.aboutStackCol3 {
+    flex: 0 0 33.33%;
+    text-align: left;
+    padding: $frame-24;
+}
+
+//Pending features
+.aboutPendingCol1 {
+    flex: 0 0 25%;
+    //border: $frame-3 solid $green;
+}
+
+.aboutPendingCol2 {
+    flex: 0 0 50%;
+    border: $frame-3 solid $green;
+    background-color: $blue3;
+
+    .aboutPendingCol2Container {
+        padding: $frame-48;
+        box-sizing: border-box;
+
+        > div {
+            height: 50px;
+            display: flex;
+            margin-bottom: $frame-48;
+        }
+
+        img {
+            height: 80%;
+            align-self: center;
+        }
+
+        span {
+            @include font-r48;
+            align-self: center;
+            padding-left: $frame-36; 
+            text-align: left;
+            color: $green;
+        }
+    }
+
+    
+}
+
+.aboutPendingCol3 {
+    flex: 0 0 25%;
+    //border: $frame-3 solid $green;
+}
+
+// 3D
+.about3DCol1 {
+    flex: 0 0 100%;
+    //border: $frame-3 solid $green;
+    //background-color: $blue3;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    img {
+        width: 80%;
+        border: $frame-3 solid $green;
+    }
+}
+
+
+/* .homeSelectScope {
+    display: flex;
+    flex-flow: column;
+    @include by-parent;
+    background: $dark-blue;
+
+    .homeSelectScopeHeader {
+        flex: 0 0 25%;
+        box-sizing: border-box;
+        display: flex;
+        // padding: $frame-48;
+        max-height: 25vh;
+    }
+
+    .homeSelectScopeLayout {
+        flex: 0 0 75%;
+        box-sizing: border-box;
+        max-height: 75vh;
+        position: relative;
+        display: flex;
+        flex-flow: column;
+    }
+
+    .homeSelectScopeBackground {
+        position: absolute;
+        @include by-parent;
+        display: flex;
+        flex-flow: column;
+
+        svg {
+            @include by-parent;
+        }
+    }
+    
+    .homeSelectScopeOptions {
+        position: absolute;
+        @include by-parent;
+        display: flex;
+        flex-flow: column;
+
+        > div {
+        flex: 0 0 33.33%;
+        // box-sizing: border-box;
+        display: flex;
+        max-height: 33.33vh;
+        }
+
+        .homeSelectScopeTop, .homeSelectScopeMiddle, .homeSelectScopeBottom {
+            display: flex;
+            flex-flow: row nowrap;
+
+            > div {
+                flex: 0 0 50%;
+                // padding-top: $frame-48;
+                padding: $frame-12;
+                box-sizing: border-box;
+                max-height: 25vh;
+                display: flex;
+                justify-content: center;
+            }
+
+            button {
+                // @include by-parent;
+                padding: 0;
+                // width: 100%;
+                border: none;
+                background: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+    
+            svg {
+                @include by-parent;
+                max-height: 14vh;
+            }
+        }
+
+        .homeSelectScopeBottom {
+            justify-content: flex-end;
+        }
+    }
+}
+
+.homeSelectStage {
+    display: flex;
+    flex-flow: column;
+    @include by-parent;
+    background: $dark-blue;
+
+    > div {
+        flex: 0 0 25%;
+        box-sizing: border-box;
+        display: flex;
+        // padding-top: $frame-48;
+        max-height: 25vh;
+    }
+
+    .homeSelectStageTop,
+    .homeSelectStageMiddle,
+    .homeSelectStageBottom
+    {
+        display: flex;
+        flex-flow: row nowrap;
+
+        > div {
+            flex: 0 0 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: $frame-12;
+            box-sizing: border-box;
+        }
+
+        button {          
+            padding: 0;
+            border: none;
+            background: none;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        svg {
+            @include by-parent;
+            max-height: 14vh;
+            min-width: 46vw;
+        }
+    }
+}
+
+.homeSelectDifficulty {
+    display: flex;
+    flex-flow: column;
+    @include by-parent;
+    background: $dark-blue;
+
+    .homeSelectDifficultyHeader {
+        flex: 0 0 25%;
+        box-sizing: border-box;
+        display: flex;
+        // padding: $frame-48;
+        max-height: 25vh;
+    }
+
+    .homeSelectDifficultyLayout {
+        flex: 0 0 75%;
+        box-sizing: border-box;
+        max-height: 75vh;
+        position: relative;
+        display: flex;
+        flex-flow: column;
+    }
+    
+    .homeSelectDifficultyOptions {
+        position: absolute;
+        @include by-parent;
+        display: flex;
+        flex-flow: column;
+
+        > div {
+            flex: 0 0 33.3%;
+            display: flex;
+            justify-content: center;
+            max-height: 25vh;
+            @include by-parent;
+            // padding-top: $frame-48;
+            padding: $frame-12;
+            box-sizing: border-box;              
+
+            > button {      
+            padding: 0;
+            border: none;
+            background: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            // @include by-parent;
+    
+                svg {
+                    // height: 100%;  
+                    width: 100%; 
+                    max-height: 16vh;                  
+                }
+            }
+        }       
+    }
+}
+
+.homeResumeMission {
+    display: flex;
+    flex-flow: column;
+    @include by-parent;
+    background: $dark-blue;
+
+    .homeResumeMissionHeader {
+        flex: 0 0 25%;
+        box-sizing: border-box;
+        display: flex;
+        padding: $frame-48;
+        max-height: 25vh;
+    }
+
+    .homeResumeMissionDialogueWrapper {
+        flex: 0 0 75%;
+        box-sizing: border-box;
+        max-height: 75vh;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: $frame-48;
+        box-sizing: border-box;
+
+        .homeResumeMissionDialogue {
+            width: 60%;
+            max-height: 80%;
+            display: flex;
+            flex-flow: column;
+            border: $frame-6 solid $blue1;
+
+            > div {
+                flex: 0 0 50%;
+                padding: $frame-48;
+                box-sizing: border-box;
+                max-height: 25vh;
+            }
+
+            .homeResumeMissionDialogueText {
+                color: $light-purple;
+                @include font-m48;
+                line-height: 1.2;
+
+                span {
+                    @include font-r36;
+                }
+            }
+
+            .homeResumeMissionDialogueOptions {
+                display: flex;
+                flex-flow: row nowrap;
+
+                > div {
+                    padding: $frame-48;
+                    box-sizing: border-box;
+                    flex: 0 0 50%;
+                }
+
+                button {
+                    @include by-parent;
+                    padding: 0;
+                    // width: 100%;
+                    border: none;
+                    background: none;
+                    display: flex;
+                    justify-content: center;
+                    cursor: pointer;
+                    color: $green;
+                    @include font-m48;
+                }
+
+                svg {
+                    height: 100%;
+                    // width: 100%;
+                    // max-height: 12vh;
+                }
+            }
+        }
+
+    }
+} */

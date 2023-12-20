@@ -10,7 +10,10 @@ $dark-green: #77b200;
 $light-blue: #252cff;
 $blue1: #090fbe;
 $blue2: #050a7f;
+$blue3: #0c0e4d;
 $dark-blue: #060725;
+
+$white: #ffffff;
 
 $red: #ff1a00;
 
@@ -59,6 +62,14 @@ $red: #ff1a00;
     line-height: 1;
 }
 
+@mixin font-m30vh {
+    font-size: calc(1.5625vh);
+    font-weight: 500;
+    font-size: -webkit-calc(1.5625vh);
+    font-size: -moz-calc(1.5625vh);
+    line-height: 1;
+}
+
 @mixin font-m36 {
     font-size: calc(1.875vw);
     font-weight: 500;
@@ -72,6 +83,14 @@ $red: #ff1a00;
     font-weight: 500;
     font-size: -webkit-calc(2.5vw);
     font-size: -moz-calc(2.5vw);
+    line-height: 1;
+}
+
+@mixin font-m48vh {
+    font-size: calc(2.5vh);
+    font-weight: 500;
+    font-size: -webkit-calc(2.5vh);
+    font-size: -moz-calc(2.5vh);
     line-height: 1;
 }
 

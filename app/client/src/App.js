@@ -9,7 +9,7 @@ const Home = lazy(() => import('./pages/home/Home'));
 const GamePlay = lazy(() => import('./pages/gamePlay/GamePlay'));
 const Register = lazy(() => import('./pages/register/Register'));
 const Login = lazy(() => import('./pages/login/Login'));
-
+const About = lazy(() => import('./pages/about/About'));
 
 const LoadIndicator = () => (
   <div className="loadIndicator">
@@ -41,6 +41,7 @@ const App = props => {
         <Route extact path="/game_play" element={<GamePlay />}/>
         <Route extact path="/register" element={<Register />}/>
         <Route extact path="/login" element={<Login />}/>
+        <Route extact path="/about" element={<About />}/>
         <Route element={NotFound} />
       </Routes>
     </Suspense>
