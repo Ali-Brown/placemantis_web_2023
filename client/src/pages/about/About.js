@@ -2,12 +2,12 @@
 import React, {useState, useEffect} from 'react';
 import styles from './about.module.scss';
 import Developer from './aboutParts/developer';
-//import GamePlay from './aboutParts/gamePlay';
-//import SelectStage from './homeSelect/SelectStage';
-//import SelectDifficulty from './homeSelect/SelectDifficulty';
-//import ResumeMission from './homeSelect/ResumeMission';
-import {connect} from 'react-redux';
-import * as actions from '../../store/actions/index';
+import GamePlay from './aboutParts/gamePlay';
+import Architecture from './aboutParts/architecture';
+import Stack from './aboutParts/stack';
+import Pending from './aboutParts/pending';
+import ThreeD from './aboutParts/threeD';
+
 import { useNavigate } from "react-router-dom";
 
 
@@ -78,88 +78,53 @@ const About = props => {
 
 
 
-    /* if (currentView === 'Gameplay') {
+    if (currentView === 'Gameplay') {
         pageContent = 
         <GamePlay 
             goBackSelected={optionGoBack}
             continueSelected={optionContinue}
         />
-    } */
-    /*
+    }
 
-    if (currentView === 'SelectScope') {
+
+    if (currentView === 'Architecture') {
         pageContent =
-        <SelectScope 
+        <Architecture 
             goBackSelected={optionGoBack}
-            continentalSelected={optionContinental}
-            subcontinentalSelected={optionSubcontinental}
-            bicontinentalSelected={optionBicontinental}
-            globalSelected={optionGlobal}
+            continueSelected={optionContinue}
         />
     }
 
-    if (currentView === 'SelectStage') {       
+    if (currentView === 'Stack') {
         pageContent =
-        <SelectStage 
-            missionScope={missionScope}
+        <Stack 
             goBackSelected={optionGoBack}
-            africaSelected={optionAfrica}
-            oceaniaSelected={optionOceania}
-            europeSelected={optionEurope}
-            northAmericaSelected={optionNorthAmerica}
-            asiaSelected={optionAsia}
-            southAmericaSelected={optionSouthAmerica}
-            sEuropeSelected={optionSEurope}
-            scAsiaSelected={optionSCAsia}
-            wcAfricaSelected={optionWCAfrica}
-            caribbeanSelected={optionCaribbean}
-            sAfricaSelected={optionSAfrica}
-            indiesAfricaSelected={optionIndiesAfrica}
-            asiaOceaniaSelected={optionAsiaOceania}
-            africaAsiaSelected={optionAfricaAsia}
+            continueSelected={optionContinue}
         />
     }
 
-    if (currentView === 'SelectDifficulty') {
+    if (currentView === 'Pending') {
         pageContent =
-        <SelectDifficulty 
+        <Pending 
             goBackSelected={optionGoBack}
-            simpleSelected={optionSimple}
-            hardSelected={optionHard}
+            continueSelected={optionContinue}
         />
     }
 
-    if (currentView === 'ResumeMission') {
+    if (currentView === 'Placemantis3D') {
         pageContent =
-        <ResumeMission 
+        <ThreeD 
             goBackSelected={optionGoBack}
-            resumeSelected={optionResume}
-            startNewSelected={optionStartNew}
+            continueSelected={optionContinue}
+            isLastPage={true}
         />
-    } */
+    }
     
     return(
-        <div className={styles.home}>
+        <div className={styles.about}>
             {pageContent}
         </div>
     )  
 }
 
-// savedMission, isAuthenticated, and avatarType:
-// will be coming in from auth global states below
-const mapStateToProps = state => {
-    return {
-        gameData: state.game.gameData,
-        isAuthenticated: state.auth.isAuthenticated,
-        user: state.auth.user
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onSetGameData: ( gameData ) => dispatch(actions.setGameData( gameData )),
-        onLogoutUser: ( gameData ) => dispatch(actions.logoutUser( gameData))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+export default About;

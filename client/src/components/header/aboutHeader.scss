@@ -1,0 +1,68 @@
+@import '../../sass_variables.scss';
+
+.aboutHeader {
+    display: flex;
+    flex-flow: row nowrap;
+    @include by-parent;
+    align-items: center;
+
+    > div {
+        padding: $frame-48;
+        box-sizing: border-box;
+        display: flex;
+    }
+}
+
+.aboutHeaderHeading div span {
+    color: $light-purple;
+    @include font-b60;
+    padding-right: $frame-24;
+}
+
+.aboutHeaderGoBack {
+    flex: 0 0 11.25%;
+}
+
+.aboutHeaderProceed {
+    flex: 0 0 11.25%;
+    transform: rotate(180deg);
+}
+
+.aboutHeaderNoProceed {
+    flex: 0 0 11.25%;
+}
+
+.aboutHeaderProceedButton {
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+
+
+.aboutHeaderGoBackButton {
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.aboutHeaderGoBackButton svg {
+    width: 100%;
+    vertical-align: middle;
+    max-height: 25vh;
+}
+
+.aboutHeaderProceedButton svg {
+    width: 100%;
+    vertical-align: middle;
+    max-height: 25vh;
+}
+
+.aboutHeaderHeading {
+    flex: 0 0 77.5%;
+    position: relative;
+    /* max-height: 25vh; */
+    justify-content: center;
+    align-items: center;
+}
