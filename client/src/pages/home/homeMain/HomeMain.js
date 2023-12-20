@@ -1700,7 +1700,7 @@ const HomeMain = props => {
                                 > 
                                     Logout
                                 </button>
-                                <Link to="/" className='homeMainAboutAuth'>
+                                <Link to="/about" className='homeMainAboutAuth'>
                                     <button>About</button>
                                 </Link>
                         </div>
@@ -1712,16 +1712,11 @@ const HomeMain = props => {
                             <Link to="/login" className='homeMainLogin'>
                                 <button>Login</button>
                             </Link>
-                            <Link to="/" className='homeMainAboutUnauth'>
+                            <Link to="/about" className='homeMainAboutUnauth'>
                                 <button>About</button>
                             </Link>
                         </div>
-                    }
-                    {/* <div className='homeAbout'>
-                        <Link to="/" className='homeMainLogin'>
-                            <button>About</button>
-                        </Link>
-                    </div> */}                   
+                    }                   
                 </div>
                 
                 <div className='homeMainStartMission'>

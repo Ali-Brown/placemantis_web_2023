@@ -160,9 +160,10 @@
         display: flex;
         background: none;
         border: none;
-        width: 12vh;
+        width: 8vw;
         border: $frame-6 solid $light-purple;
         border-radius: 50%;
+        cursor: auto;
     }
     
     svg {
@@ -187,10 +188,6 @@
         border: none;
         @include font-b48;
     }
-}
-
-.userAvatar {
-    cursor: auto;
 }
 
 .homeMainAudioOn {
