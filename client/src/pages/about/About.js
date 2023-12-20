@@ -69,6 +69,10 @@ const About = props => {
         } 
     }
 
+    const optionGoHome = () => {
+        history('/');
+    }
+
 
     let pageContent = 
     <Developer 
@@ -115,7 +119,7 @@ const About = props => {
         pageContent =
         <ThreeD 
             goBackSelected={optionGoBack}
-            continueSelected={optionContinue}
+            goHomeSelected={optionGoHome}
             isLastPage={true}
         />
     }

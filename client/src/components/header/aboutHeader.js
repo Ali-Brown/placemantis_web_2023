@@ -46,7 +46,16 @@ const AboutHeader = props => {
                 {props.children}
             </div>
             {props.isLastPage ? 
-            <div className='aboutHeaderNoProceed'></div> :
+            <div className='aboutHeaderProceed'>
+                <button className='aboutHeaderProceedButton' onClick={props.goHome}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 60">
+                        <g fill="none" stroke="#5A24B2" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10">
+                            <path d="M55 5L5 55"/>
+                            <path d="M5 5l50 50"/>
+                        </g>
+                    </svg>
+                </button>
+            </div> :
             <div className='aboutHeaderProceed'>
                 <button className='aboutHeaderProceedButton' onClick={props.proceed}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 60">

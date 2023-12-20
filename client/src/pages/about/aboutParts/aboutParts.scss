@@ -131,6 +131,7 @@
     div p {
         @include font-r36;
         color: $light-purple;
+        line-height: 1.2;
 
         img {
             width: $frame-36;
