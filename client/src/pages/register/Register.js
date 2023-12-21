@@ -76,9 +76,9 @@ class Register extends Component {
         
 
         if (this.props.checkUsernameLoading === false && (prevProps.checkUsernameSuccess === false && this.props.checkUsernameSuccess) ) {
-            console.log('user name check routine');
+            //console.log('user name check routine');
             if (this.props.checkUsernameSuccessMessage === 'Username Available') {
-                console.log('user name available routine');
+                //console.log('user name available routine');
                 this.setState({ 
                     showUsername: false, 
                     showEmail: true,
@@ -140,9 +140,9 @@ class Register extends Component {
         }
 
         if (this.state.showUsername) {
-            console.log("next/submit part routine");
+            //console.log("next/submit part routine");
             if (this.state.username !== '' && this.state.username.length >= this.state.minLength) {
-                console.log("next/submit check availability routine");
+                //console.log("next/submit check availability routine");
                 this.props.onCheckUsernameAvailabilty(this.state.username);
             } else {
                 this.setState({ valid: false});
@@ -305,7 +305,7 @@ class Register extends Component {
             playButtonSound();
         }
 
-        console.log('submit form all');
+        //console.log('submit form all');
         if (this.props.userSelectedAvatar && this.props.userSelectedAvatar !== '') {
             let userData = {
                 username: this.state.username,

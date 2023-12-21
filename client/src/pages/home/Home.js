@@ -22,7 +22,7 @@ const Home = props => {
         id: 0,
         volume: 0.5,
         onend: function() {
-            console.log('Finished!');
+            //console.log('Finished!');
         }
     }); */
 
