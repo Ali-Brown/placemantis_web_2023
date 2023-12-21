@@ -12,7 +12,8 @@ export const playHomeSound = () => {
 
     homeSound = new Howl({
         src: ['/audio/home.wav'],
-        loop: true
+        loop: true,
+        html5: true
     });
 
     homeSound.play();
@@ -26,7 +27,8 @@ export const playGameSound = () => {
     gameSound = new Howl({
         src: ['/audio/game_play2.wav'],
         loop: true,
-        volume: 0.25
+        volume: 0.25,
+        html5: true
     });
 
     gameSound.play();
@@ -34,7 +36,8 @@ export const playGameSound = () => {
 
 export const playButtonSound = () => {
     buttonSound = new Howl({
-        src: ['/audio/button.wav']
+        src: ['/audio/button.wav'],
+        html5: true
     });
 
     buttonSound.play();
@@ -42,7 +45,8 @@ export const playButtonSound = () => {
 
 export const playNavSound = () => {
     navSound = new Howl({
-        src: ['/audio/nav_icon.wav']
+        src: ['/audio/nav_icon.wav'],
+        html5: true
     });
 
     navSound.play();
