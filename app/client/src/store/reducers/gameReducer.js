@@ -1,3 +1,4 @@
+//import { toggleAudio } from '../actions';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
@@ -8,6 +9,7 @@ const initialState = {
         difficulty: null,
         savedMission: null
     },
+    audioOn: false,
 
     playParams: {
         scorePerRound: 1000,
@@ -17,12 +19,12 @@ const initialState = {
         hardSecondsPerRound: 8,
         roundTimerWarningSecond: 4,
         roundIntervalSeconds: 2,
-        bonusPointPerRightCount: 500,
+        simpleBonusPoint: 500,
         rightCountForBonusPointsMaxSimple: 6,
         rightCountForBonusPointsMaxHard: 8,
         rightCountForBonusLiveMaxSimple: 10,
         rightCountForBonusLiveMaxHard: 12,
-        bonusPointPerRightCountHard: 1000,
+        hardBonusPoint: 1000,
         rightCountForBonusPointsWorldMaxSimple: 10,
         rightCountForBonusPointsWorldMaxHard: 14,
         rightCountForBonusLiveWorldMaxSimple: 16,
@@ -56,6 +58,7 @@ const initialState = {
 
     roundTimerElapsed: false,
     timerAlmostUp: false,
+    warningAlarmShouldBeOn: false,
 
     level: 0,
     levelScore: 0,
@@ -71,6 +74,21 @@ const initialState = {
     screenTrackerActive: false,
 
     prePlayerTimerEnded: false
+}
+
+const toggleAudio = (state, action) => {
+    if (action.boolData === true) {
+        return {
+            ...state,
+            audioOn: false
+        }
+    } else {
+        return {
+            ...state,
+            audioOn: true
+        }
+    }
+    
 }
 
 const setGameData = (state, action) => {
@@ -130,14 +148,16 @@ const levelsDialogueTimerEnd = (state, action) => {
 const playerRoundTimerEnd = (state, action) => {
     return {
         ...state,
-        roundTimerElapsed: true
+        roundTimerElapsed: true,
+        warningAlarmShouldBeOn: false
     }
 }
 
 const roundTimerAlmostUp = (state, action) => {
     return {
         ...state,
-        timerAlmostUp: true
+        timerAlmostUp: true,
+        warningAlarmShouldBeOn: true
     }
 
 }
@@ -148,6 +168,7 @@ const playerRoundOver = (state, action) => {
         roundTimerElapsed: false,
         timerAlmostUp: false,
         gameStatus: 'On',
+        warningAlarmShouldBeOn: false
     }
 }
 
@@ -365,6 +386,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_GAME_DATA: 
             return setGameData(state, action);
+        case actionTypes.TOGGLE_AUDIO: 
+            return toggleAudio(state, action);
         case actionTypes.SHOW_LEVELS_DIALOGUE:
             return showLevelsDialogue(state, action);
         case actionTypes.SHOW_TYPE_DIALOGUE:

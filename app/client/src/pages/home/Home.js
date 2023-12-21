@@ -10,9 +10,22 @@ import ResumeMission from './homeSelect/ResumeMission';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { useNavigate } from "react-router-dom";
+import {playButtonSound, playNavSound} from '../../howler/index';
 
 
 const Home = props => {
+
+    /* var sound = new Howl({
+        src: ['/audio/home.wav'],
+        //autoplay: true,
+        loop: true,
+        id: 0,
+        volume: 0.5,
+        onend: function() {
+            //console.log('Finished!');
+        }
+    }); */
+
     const [currentView, setCurrentView] = useState('HomeMain');
     const [previousView, setPreviousView] = useState('');
     const [missionType, setMissionType] = useState('');
@@ -21,6 +34,7 @@ const Home = props => {
     const [missionDifficulty, setMissionDifficulty] = useState('');
     const [startOrResumeMission, setStartOrResumeMission] = useState(false);
     const [resumeSavedMission, setResumeSavedMission] = useState(false);
+    //const [audioOn, toggleAudioOnOff] = useState(true);
     // savedMission state below is used for testing purpose only,
     // retrieve the value of savedMission from global state
     const [savedMission] = useState(false);
@@ -52,6 +66,10 @@ const Home = props => {
     }, [startOrResumeMission]);
 
     const optionStartMission = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
+
         if (savedMission) {
             setCurrentView('ResumeMission');
             setPreviousView('HomeMain');
@@ -59,12 +77,6 @@ const Home = props => {
             setCurrentView('SelectType');
             setPreviousView('HomeMain');
         }       
-    }
-
-    const optionAudio = () => {
-        // Launch a global action to alter audioOn state
-        // changeAudioPreference(props.audioOn)
-        console.log('audio button clicked');     
     }
     
     const optionResume = () => {
@@ -78,6 +90,10 @@ const Home = props => {
     }
 
     const optionGoBack = () => {
+        if (props.audioOn) {
+            playNavSound();
+        }
+       
         if (currentView === 'SelectType' && previousView === 'HomeMain') {
             setCurrentView('HomeMain');
             setPreviousView('');
@@ -104,12 +120,18 @@ const Home = props => {
     }
 
     const optionSingleMission = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setCurrentView('SelectScope');
         setPreviousView('SelectType');
         setMissionType('Single');
     }
 
     const optionMultilevelMission = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectType');
         setMissionType('Multilevel');
@@ -117,108 +139,162 @@ const Home = props => {
     }
 
     const optionContinental = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionScope('Continental');
         setCurrentView('SelectStage');
         setPreviousView('SelectScope');       
     }
 
     const optionSubcontinental = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionScope('Subcontinental');
         setCurrentView('SelectStage');
         setPreviousView('SelectScope');
     }
 
     const optionBicontinental = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionScope('Bicontinental');
         setCurrentView('SelectStage');
         setPreviousView('SelectScope');
     }
 
     const optionAfrica = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Africa');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionOceania = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Oceania');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionEurope = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Europe');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionNorthAmerica = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('North America');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionAsia = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Asia');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionSouthAmerica = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('South America');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionSEurope = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Southern Europe');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionSCAsia = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Central and South Asia');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionWCAfrica = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('West and Central Africa');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionCaribbean = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('The Caribbean Islands');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionSAfrica = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Southern Africa');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionIndiesAfrica = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('West Indies and West Africa');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionAsiaOceania = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('Southeast Asia and Oceania');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionAfricaAsia = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionStage('East Africa and Middle East Asia');
         setCurrentView('SelectDifficulty');
         setPreviousView('SelectStage');
     }
 
     const optionGlobal = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionScope('World');
         setMissionStage('World');
         setCurrentView('SelectDifficulty');
@@ -226,17 +302,44 @@ const Home = props => {
     }
 
     const optionSimple = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionDifficulty('Simple');
         setStartOrResumeMission(true);
     }
 
     const optionHard = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         setMissionDifficulty('Hard');
         setStartOrResumeMission(true);
     }
 
     const logoutClicked = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
         props.onLogoutUser();
+    }
+
+    const aboutClicked = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
+    }
+
+    const loginClicked = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
+    }
+
+    const registerClicked = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
     }
 
 
@@ -256,9 +359,12 @@ const Home = props => {
             /* isAuthenticated */ 
             /* audioOn */
             startMissionSelected={optionStartMission}
-            audioSelected={optionAudio}
+            //audioSelected={optionAudio}
             logoutClicked={logoutClicked}
             avatarType={avatarType}
+            aboutClicked={aboutClicked}
+            loginClicked={loginClicked}
+            registerClicked={registerClicked}
         />
     }
 
@@ -335,7 +441,8 @@ const mapStateToProps = state => {
     return {
         gameData: state.game.gameData,
         isAuthenticated: state.auth.isAuthenticated,
-        user: state.auth.user
+        user: state.auth.user,
+        audioOn: state.game.audioOn
     }
 }
 

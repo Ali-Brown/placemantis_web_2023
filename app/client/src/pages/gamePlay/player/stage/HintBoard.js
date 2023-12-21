@@ -12,7 +12,7 @@ const HintBoard = props => {
     let previousPlaceName = usePreviousValue(placeName);
 
     useEffect(() => {
-        console.log(previousPlaceName, placeName);
+        //console.log(previousPlaceName, placeName);
         
         if (placeName !== '' && previousPlaceName !== placeName) {
             let nonImageHints = [];
@@ -57,7 +57,7 @@ const HintBoard = props => {
             }
         
             setShuffledNonImageHints(shuffleArray(nonImageHints));
-            console.log(nonImageHints);
+            //console.log(nonImageHints);
         }
 
         if (props.showHints === true) {

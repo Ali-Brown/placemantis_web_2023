@@ -9,6 +9,9 @@ import {connect} from 'react-redux';
 import {checkValidity} from '../../utilities/utilities';
 import * as actions from '../../store/actions/index';
 import withRouter from '../../withRouter';
+import {playButtonSound} from '../../howler/index';
+
+
 
 class Register extends Component {
     state = {   
@@ -73,9 +76,9 @@ class Register extends Component {
         
 
         if (this.props.checkUsernameLoading === false && (prevProps.checkUsernameSuccess === false && this.props.checkUsernameSuccess) ) {
-            console.log('user name check routine');
+            //console.log('user name check routine');
             if (this.props.checkUsernameSuccessMessage === 'Username Available') {
-                console.log('user name available routine');
+                //console.log('user name available routine');
                 this.setState({ 
                     showUsername: false, 
                     showEmail: true,
@@ -131,10 +134,15 @@ class Register extends Component {
 
     submitPartForm = (event) => {
         event.preventDefault();
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+
         if (this.state.showUsername) {
-            console.log("next/submit part routine");
+            //console.log("next/submit part routine");
             if (this.state.username !== '' && this.state.username.length >= this.state.minLength) {
-                console.log("next/submit check availability routine");
+                //console.log("next/submit check availability routine");
                 this.props.onCheckUsernameAvailabilty(this.state.username);
             } else {
                 this.setState({ valid: false});
@@ -206,6 +214,11 @@ class Register extends Component {
 
     showPreviousFormPart = (event) => {
         event.preventDefault();
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+
         if (this.state.showEmail) {
             this.props.onResetUsernameAvailabilty();
 
@@ -287,7 +300,12 @@ class Register extends Component {
 
     submitFormAll = (event) => {
         event.preventDefault();
-        console.log('submit form all');
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+
+        //console.log('submit form all');
         if (this.props.userSelectedAvatar && this.props.userSelectedAvatar !== '') {
             let userData = {
                 username: this.state.username,
@@ -310,6 +328,10 @@ class Register extends Component {
     }
 
     submitFormAllAgain = () => {
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+
         let userData = {
             username: this.state.username,
             email: this.state.email,
@@ -320,7 +342,10 @@ class Register extends Component {
     }
 
     goToLogin = () => {
-        this.props.router.navigate('/login')
+        this.props.router.navigate('/login');
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
     }
 
     goToHome = () => {
@@ -653,7 +678,8 @@ const mapStateToProps = state => {
         registrationLoading: state.auth.registrationLoading,
         registrationSuccess: state.auth.registrationSuccess,
         registrationFail: state.auth.registrationFail,
-        registrationFailReason: state.auth.registrationFailReason
+        registrationFailReason: state.auth.registrationFailReason,
+        audioOn: state.game.audioOn
     }
 }
 

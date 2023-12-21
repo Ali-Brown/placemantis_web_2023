@@ -21,7 +21,7 @@ const ThreeD = props => {
             <div className='aboutPageHeader'>
                <AboutHeader 
                     goBack={props.goBackSelected}
-                    proceed={props.continueSelected}
+                    goHome={props.goHomeSelected}
                     isLastPage={props.isLastPage}
                >
                     <div>

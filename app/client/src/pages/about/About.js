@@ -7,6 +7,8 @@ import Architecture from './aboutParts/architecture';
 import Stack from './aboutParts/stack';
 import Pending from './aboutParts/pending';
 import ThreeD from './aboutParts/threeD';
+import {connect} from 'react-redux';
+import {playNavSound} from '../../howler/index';
 
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +31,11 @@ const About = props => {
     
 
     const optionGoBack = () => {
+
+        if (props.audioOn) {
+            playNavSound();
+        }
+
         if (currentView === 'Placemantis3D' && previousView === 'Pending') {
             setCurrentView('Pending');
             setPreviousView('Stack');
@@ -51,6 +58,11 @@ const About = props => {
     }
 
     const optionContinue = () => {
+
+        if (props.audioOn) {
+            playNavSound();
+        }
+        
         if (currentView === 'Developer' && previousView === '') {
             setCurrentView('Gameplay');
             setPreviousView('Developer');
@@ -67,6 +79,10 @@ const About = props => {
             setCurrentView('Placemantis3D');
             setPreviousView('Pending');
         } 
+    }
+
+    const optionGoHome = () => {
+        history('/');
     }
 
 
@@ -115,7 +131,7 @@ const About = props => {
         pageContent =
         <ThreeD 
             goBackSelected={optionGoBack}
-            continueSelected={optionContinue}
+            goHomeSelected={optionGoHome}
             isLastPage={true}
         />
     }
@@ -127,4 +143,10 @@ const About = props => {
     )  
 }
 
-export default About;
+const mapStateToProps = state => {
+    return {
+        audioOn: state.game.audioOn
+    }
+}
+
+export default connect(mapStateToProps, null)(About);

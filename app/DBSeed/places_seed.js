@@ -4692,9 +4692,9 @@ function seedDB() {
       const result = await collection.insertMany(placeList, options);
     
       // Print result
-      console.log(`${result.insertedCount} documents were inserted`);
+      //console.log(`${result.insertedCount} documents were inserted`);
     } catch (err) {
-        console.log(err.stack);
+        //console.log(err.stack);
     } finally {
         await client.close();
     }

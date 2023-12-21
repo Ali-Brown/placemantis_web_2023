@@ -6,11 +6,17 @@ import {positionY} from '../../../anime/position';
 import {Link} from 'react-router-dom';
 import Avatar from '../../../components/avatar/Avatar';
 import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/index';
+import { offAudio, playHomeSound} from '../../../howler/index';
 
 
 const HomeMain = props => {
 
     useEffect(() => {
+
+        if (props.audioOn) {
+            playHomeSound();
+        }
 
         let timeline1Prop = {
             easing: 'easeInOutQuad',
@@ -99,7 +105,24 @@ const HomeMain = props => {
         SDSDPPP(timeline2Prop);
         positionY(mantisPositionProp);
         positionY(startButtonProp);
-    });
+
+        /* return () => {
+            Howler.stop();
+        } */
+       
+    }, []);
+    
+
+    const toggleAudio = () => {
+        if (props.audioOn) {
+            //console.log("homeSound off");
+            offAudio();
+        } else {
+            //console.log("homeSound on");
+            playHomeSound();
+        }
+       props.onToggleAudio(props.audioOn);
+    }
 
     return(
         <div className='homeMain'>
@@ -1701,19 +1724,19 @@ const HomeMain = props => {
                                     Logout
                                 </button>
                                 <Link to="/about" className='homeMainAboutAuth'>
-                                    <button>About</button>
+                                    <button onClick={props.aboutClicked}>About</button>
                                 </Link>
                         </div>
                         :
                         <div className='homeMainUnauthenticated'>
                             <Link to="/register" className='homeMainRegister'>
-                                <button>Register</button>
+                                <button onClick={props.registerClicked}>Register</button>
                             </Link>
                             <Link to="/login" className='homeMainLogin'>
-                                <button>Login</button>
+                                <button onClick={props.loginClicked}>Login</button>
                             </Link>
                             <Link to="/about" className='homeMainAboutUnauth'>
-                                <button>About</button>
+                                <button onClick={props.aboutClicked}>About</button>
                             </Link>
                         </div>
                     }                   
@@ -1723,7 +1746,7 @@ const HomeMain = props => {
                     <button onClick={props.startMissionSelected}>Start Mission</button>
                 </div>
                 <div className='homeMainAudio'>
-                    <button onClick={props.audioSelected} className='homeMainAudioButton'>
+                    <button onClick={toggleAudio} className='homeMainAudioButton'>
                         {   props.audioOn ?
                             <svg className='homeMainAudioOn' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 60">
                                 <path fill="none" stroke="#5A24B2" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" d="M19.674 43H7V18h25.174L45 5v50L32.174 43h-12.5zm37.5 12c13.809 0 25-11.191 25-25s-11.191-25-25-25m0 37.5c6.9 0 12.5-5.6 12.5-12.5 0-6.901-5.6-12.5-12.5-12.5"/>
@@ -1745,8 +1768,15 @@ const HomeMain = props => {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        audioOn: state.game.audioOn
     }
 }
 
-export default connect(mapStateToProps)(HomeMain);
+const mapDispatchToProps = dispatch => {
+    return {
+        onToggleAudio: ( boolData ) => dispatch(actions.toggleAudio( boolData ))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeMain);

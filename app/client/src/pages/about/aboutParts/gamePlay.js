@@ -48,7 +48,8 @@ const Gameplay = props => {
                             Watch out! Each location guess is timed {" "}
                             <img src="/images/about/timer-icon.png" alt="timer icon"/>
                             {" "} and live is lost not only for
-                            wrong guesses but also for round time elapses.
+                            wrong guesses but also for round time elapses. 
+                            Remember to use the hintboard, it helps!
                         </p>
                     </div>
                     <div className='aboutGameplayCol2'>

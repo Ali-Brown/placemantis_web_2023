@@ -20,6 +20,7 @@ export {
     restartLastMission,
     restartMultilevelMission,
     startNextLevel,
+    toggleAudio
 } from './gameActions';
 
 export {

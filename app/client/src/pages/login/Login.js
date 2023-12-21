@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {checkValidity} from '../../utilities/utilities';
 import * as actions from '../../store/actions/index';
 import withRouter from '../../withRouter';
+import {playButtonSound} from '../../howler/index';
 
 class Login extends Component {
 
@@ -91,6 +92,11 @@ class Login extends Component {
     }
 
     handleDialogueButtonClicked = () => {
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+
         if (this.state.formGroup === "login") {
             this.props.router.navigate('/');
         } else if (this.state.formGroup === "reset") {
@@ -151,6 +157,11 @@ class Login extends Component {
     }
 
     backToLogin = () => {
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+
         this.setState({ 
             formGroup: 'login',
             showUsername: true,
@@ -226,6 +237,10 @@ class Login extends Component {
 
     submitPartForm = (event) => {
         event.preventDefault();
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
 
         if (this.state.formGroup === 'login') {
             if (this.state.showUsername) {
@@ -327,6 +342,11 @@ class Login extends Component {
     }
 
     showPreviousFormPart = (event) => {
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+
         if (this.state.formGroup === 'login') {
             if (this.state.showPassword) {
                 this.setState({
@@ -388,6 +408,11 @@ class Login extends Component {
     }
 
     retryLogin = () => {
+
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
+        
         this.setState({
             showForm: true, 
             showDialogue: false,
@@ -664,7 +689,9 @@ const mapStateToProps = state => {
         sideEffectFail: state.auth.loginFail,
 
         successMessage: state.auth.loginSuccessMessage,
-        failMessage: state.auth.loginFailMessage
+        failMessage: state.auth.loginFailMessage,
+
+        audioOn: state.game.audioOn
     }
 }
 

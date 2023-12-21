@@ -37,7 +37,7 @@ const Developer = props => {
                         <div className='developerImgContainer'>
                             <img src="/images/about/developerImg.png" alt="developer"/>
                             <h3>Babatunde Ali-Brown</h3>
-                            <div>Undergraduate-Student(online) @ SNHU</div>
+                            <div>Undergraduate-Student(senior, online) @ SNHU</div>
                             <div>Computer-Science 3.7GPA(Dec. 2023)</div>
                         </div>
                         <div className='developerContacts'>

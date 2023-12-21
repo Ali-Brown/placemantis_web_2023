@@ -30,6 +30,12 @@
 
 .aboutHeaderNoProceed {
     flex: 0 0 11.25%;
+
+    div {
+        @include font-b48;
+        cursor: pointer;
+        color: $light-blue;
+    }
 }
 
 .aboutHeaderProceedButton {

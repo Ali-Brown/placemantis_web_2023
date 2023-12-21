@@ -6,10 +6,16 @@ import {scaleElement} from '../../../../anime/scale';
 import '../moderator.scss';
 import DialogueButton from '../../../../components/buttons/Button';
 import { useNavigate } from "react-router-dom";
+import {playMissionCompleteSound} from '../../../../howler/index';
 
 
 const GameOver = props => {
     const history = useNavigate();
+
+    if (props.audioOn) {
+        playMissionCompleteSound();
+    }
+    
 
     let totalRounds;
     let completedRounds;
@@ -33,11 +39,11 @@ const GameOver = props => {
 
     if (props.difficulty === 'Simple') {
         let nonBonusedScore = props.scorePerRound * totalRounds;
-        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxSimple) * props.bonusPointPerRightCount; 
+        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxSimple) * props.simpleBonusPoint; 
         highestPossibleScore = nonBonusedScore + bonusedScore;
     } else {
         let nonBonusedScore = props.scorePerRound * totalRounds;
-        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxHard) * props.bonusPointPerRightCountHard; 
+        let bonusedScore = Math.floor(totalRounds / props.rightCountForBonusPointsMaxHard) * props.hardBonusPoint; 
         highestPossibleScore = nonBonusedScore + bonusedScore;
     }
 
@@ -67,7 +73,7 @@ const GameOver = props => {
             const elem = document.querySelector('.gameOverDialogueTitle');
             elem.style.color = '#ff1a00';
         } 
-    });
+    }, []);
 
     const onPlayAgain = () => {
         // console.log('play again');
@@ -196,8 +202,9 @@ const mapStateToProps = state => {
         scorePerRound: state.game.playParams.scorePerRound,
         rightCountForBonusPointsMaxSimple: state.game.playParams.rightCountForBonusPointsMaxSimple,
         rightCountForBonusPointsMaxHard: state.game.playParams.rightCountForBonusPointsMaxHard,
-        bonusPointPerRightCount: state.game.playParams.bonusPointPerRightCount,
-        bonusPointPerRightCountHard: state.game.playParams.bonusPointPerRightCountHard,
+        simpleBonusPoint: state.game.playParams.simpleBonusPoint,
+        hardBonusPoint: state.game.playParams.hardBonusPoint,
+        audioOn: state.game.audioOn
     }
 }
 

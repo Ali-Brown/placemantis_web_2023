@@ -34,6 +34,7 @@ class GamePlay extends Component {
         } else {
             this.props.onShowTypeDialogue(stagesShuffled);
         }
+
     }
 
     componentDidUpdate(prevProps) {
@@ -119,6 +120,7 @@ const mapStateToProps = state => {
         prePlayerTimerEnded: state.game.prePlayerTimerEnded,
 
         levelStage: state.game.levelStage,
+        audioOn: state.game.audioOn
         // below from global auth state
         // isAuthenticated: false,
         // user: null

@@ -32,6 +32,7 @@ import SouthAmerica from './stages/SouthAmerica';
 import World from './stages/World';
 
 import withRouter from '../../../withRouter';
+import {playNewRoundSound, playWrongChoiceSound, playRightChoiceSound, playNavSound, playButtonSound} from '../../../howler/index';
 
 
 class Player extends Component {
@@ -116,6 +117,7 @@ class Player extends Component {
     }
 
     componentDidMount() {
+
         if (this.props.gameType === 'Single') {
             let bonus = this.props.roundIntervalSeconds;
             let pointMaxSimple = this.props.rightCountForBonusPointsMaxSimple;
@@ -124,7 +126,7 @@ class Player extends Component {
             let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
             if (this.props.difficulty === 'Hard' ) {
-                bonus = this.props.bonusPointPerRightCountHard;
+                bonus = this.props.hardBonusPoint;
             }
 
             if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -136,7 +138,7 @@ class Player extends Component {
             
 
             this.setState({
-                bonusPointPerRightCount: bonus,
+                simpleBonusPoint: bonus,
                 rightCountForBonusPointsMaxSimple: pointMaxSimple,
                 rightCountForBonusPointsMaxHard: pointMaxHard,
                 rightCountForBonusLiveMaxSimple: liveMaxSimple,
@@ -161,7 +163,7 @@ class Player extends Component {
                 let lifeCount = this.props.lifeCount;
 
                 if (this.props.difficulty === 'Hard' ) {
-                    bonus = this.props.bonusPointPerRightCountHard;
+                    bonus = this.props.hardBonusPoint;
                 }
 
                 if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -189,7 +191,7 @@ class Player extends Component {
                 }
 
                 this.setState({ 
-                    bonusPointPerRightCount: bonus,
+                    simpleBonusPoint: bonus,
                     rightCountForBonusPointsMaxSimple: pointMaxSimple,
                     rightCountForBonusPointsMaxHard: pointMaxHard,
                     rightCountForBonusLiveMaxSimple: liveMaxSimple,
@@ -210,7 +212,7 @@ class Player extends Component {
                 let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
                 if (this.props.difficulty === 'Hard' ) {
-                    bonus = this.props.bonusPointPerRightCountHard;
+                    bonus = this.props.hardBonusPoint;
                 }
 
                 if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -221,7 +223,7 @@ class Player extends Component {
                 }
 
                 this.setState({
-                    bonusPointPerRightCount: bonus,
+                    simpleBonusPoint: bonus,
                     rightCountForBonusPointsMaxSimple: pointMaxSimple,
                     rightCountForBonusPointsMaxHard: pointMaxHard,
                     rightCountForBonusLiveMaxSimple: liveMaxSimple,
@@ -286,6 +288,10 @@ class Player extends Component {
         } else if (prevState.rightUserOption === false && this.state.rightUserOption === true && this.state.gameOver === false) {
 
             // console.log('Running Right Option Routine, total score:', this.state.totalScore, );
+            if (this.props.audioOn) {
+                //console.log("Wrong Choice!");
+                playRightChoiceSound();
+            }
         
             let newRightChoiceCount = this.state.rightChoiceCount + 1;
             let newRoundScore = this.props.scorePerRound;
@@ -308,7 +314,7 @@ class Player extends Component {
                 if (pointRightCount < this.props.rightCountForBonusPointsMaxSimple) {
                     showBonusPoint = false;
                 } else if (pointRightCount === this.props.rightCountForBonusPointsMaxSimple) {
-                    bonusPoint = pointRightCount * this.props.roundIntervalSeconds;
+                    bonusPoint = this.props.simpleBonusPoint;
                     pointRightCount =  0;
                     newTotalScore = newTotalScore + bonusPoint;
                     showBonusPoint = true;
@@ -340,7 +346,7 @@ class Player extends Component {
                     showBonusPoint = false;
                     // console.log("no bonus, ", this.pointRightCount, this.props.rightCountForBonusPointsMaxHard)
                 } else if (pointRightCount === this.props.rightCountForBonusPointsMaxHard) {
-                    bonusPoint = pointRightCount * this.props.roundIntervalSeconds;
+                    bonusPoint = this.props.hardBonusPoint;
                     pointRightCount =  0;
                     newTotalScore = newTotalScore + bonusPoint;
                     showBonusPoint = true;
@@ -574,7 +580,7 @@ class Player extends Component {
         })
         
         // console.log('On next round score:', this.state.totalScore, "round: " + this.state.nextRound);
-        console.log('initialized single game', placeDomID);
+        //console.log('initialized single game', placeDomID);
     }
 
     initializeMultilevelStage = () => {
@@ -611,7 +617,7 @@ class Player extends Component {
             restartMission: false
         });
 
-        console.log("multilevel  stage initialized: ", placeDomID);
+        //console.log("multilevel  stage initialized: ", placeDomID);
     }
 
     initializeSingleGameRestart = () => {
@@ -623,7 +629,7 @@ class Player extends Component {
         let liveMaxHard = this.props.rightCountForBonusLiveMaxHard;
 
         if (this.props.difficulty === 'Hard' ) {
-            bonus = this.props.bonusPointPerRightCountHard;
+            bonus = this.props.hardBonusPoint;
         }
 
         if (this.props.gameStage === 'World' || this.props.levelStage === 'World') {
@@ -670,7 +676,7 @@ class Player extends Component {
             rightUserOption: false,
             clickedOption: null,
 
-            bonusPointPerRightCount: bonus,
+            simpleBonusPoint: bonus,
             rightCountForBonusPoints: 0,
             displayedBonusPoint: 0,
             rightCountForBonusPointsMaxSimple: pointMaxSimple,
@@ -826,6 +832,9 @@ class Player extends Component {
             // console.log('GAME OVER!!!!!!!!');
             this.setState({ gameOver: true });
         } else {
+            if (this.props.audioOn) {
+                playNewRoundSound();
+            }
 
             const round = this.state.nextRound + 1;
             const lastPlace = this.state.nextPlaceName;
@@ -862,20 +871,29 @@ class Player extends Component {
                 showTimerPanelTimer: true,
             });
             // console.log('next round score:', this.state.totalScore, "round: " + this.state.nextRound);
-            console.log('next round target', placeDomID);
+            //console.log('next round target', placeDomID);
         }
     }
 
     cancelMission = () => {
         // console.log('stop game?');
+        if (this.props.audioOn) {
+            playNavSound();
+        }
         this.setState({ showCancelGame: true, gamePaused: true });
     }
 
     abortCancelMission = () => {
         this.setState({ showCancelGame: false, gamePaused: false });
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
     }
 
     confirmCancelMission = () => {
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
         this.props.router.navigate('/');
     }
 
@@ -891,19 +909,32 @@ class Player extends Component {
 
     restartMission = () => {
         // console.log('restart game?');
+        if (this.props.audioOn) {
+            playNavSound();
+        }
         this.setState({ showRestartGame: true, gamePaused: true });
     }
 
     abortRestartMission = () => {
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
         this.setState({ showRestartGame: false, gamePaused: false });
     }
 
     confirmRestartMission = () => {
+        if (this.props.audioOn) {
+            playButtonSound();
+        }
         this.props.onPlayerRoundOver();
         this.initializeSingleGameRestart();
     }
 
     showHintsClicked = () => {
+        if (this.props.audioOn) {
+            playNavSound();
+        }
+
         this.setState((prevState) => {
             return {
                 showHints: !prevState.showHints
@@ -912,6 +943,10 @@ class Player extends Component {
     }
 
     showRankingClicked = () => {
+        if (this.props.audioOn) {
+            playNavSound();
+        }
+
         this.setState((prevState) => {
             return {
                 showUserRanking: !prevState.showUserRanking
@@ -938,6 +973,12 @@ class Player extends Component {
 
                 // console.log(domID);
             } else if (domID !== this.state.nextPlaceName) {
+
+                if (this.props.audioOn) {
+                    //console.log("Wrong Choice!");
+                    playWrongChoiceSound();
+                }
+                
                 let wrongChoices = this.state.wrongRoundChoices
                 wrongChoices.push(domID);
 
@@ -1029,7 +1070,7 @@ class Player extends Component {
                     });
                 } else if (this.state.rightChoiceCount >= 1 && newTotalScore <= 0) {
 
-                    console.log('Run WrongChoice Routine -- rightChoiceCount >= 1, newtotalScore <= 0', totalScore, newTotalScore);
+                    //console.log('Run WrongChoice Routine -- rightChoiceCount >= 1, newtotalScore <= 0', totalScore, newTotalScore);
 
                     let live4 = false;
                     let live3 = false;
@@ -1077,7 +1118,7 @@ class Player extends Component {
         if (this.props.user != null) {
             currentUserRank = this.props.user.rank;
             avatarType = this.props.user.avatarType;
-            console.log(avatarType);
+            //console.log(avatarType);
         }
 
         let secondsPerRound = this.props.simpleSecondsPerRound;
@@ -1394,12 +1435,12 @@ const mapStateToProps = state => {
         hardSecondsPerRound: state.game.playParams.hardSecondsPerRound,
         roundTimerWarningSecond: state.game.playParams.roundTimerWarningSecond,
         roundIntervalSeconds: state.game.playParams.roundIntervalSeconds,
-        bonusPointPerRightCount: state.game.playParams.bonusPointPerRightCount,
+        simpleBonusPoint: state.game.playParams.simpleBonusPoint,
         rightCountForBonusPointsMaxSimple: state.game.playParams.rightCountForBonusPointsMaxSimple,
         rightCountForBonusPointsMaxHard: state.game.playParams.rightCountForBonusPointsMaxHard,
         rightCountForBonusLiveMaxSimple: state.game.playParams.rightCountForBonusLiveMaxSimple,
         rightCountForBonusLiveMaxHard: state.game.playParams.rightCountForBonusLiveMaxHard,
-        bonusPointPerRightCountHard: state.game.playParams.bonusPointPerRightCountHard,
+        hardBonusPoint: state.game.playParams.hardBonusPoint,
         rightCountForBonusPointsWorldMaxSimple: state.game.playParams.rightCountForBonusPointsWorldMaxSimple,
         rightCountForBonusPointsWorldMaxHard: state.game.playParams.rightCountForBonusPointsWorldMaxHard,
         rightCountForBonusLiveWorldMaxSimple: state.game.playParams.rightCountForBonusLiveWorldMaxSimple,
@@ -1424,6 +1465,8 @@ const mapStateToProps = state => {
         isAuthenticated: state.auth.isAuthenticated,
         user: state.auth.user,
         userRank: "Place Marshal",
+
+        audioOn: state.game.audioOn
     }
 }
 

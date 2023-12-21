@@ -4,6 +4,7 @@ import Timer from '../../Timer';
 import {positionX} from '../../../../anime/position';
 import {usePreviousValue} from '../../../../utilities/utilities';
 
+
 const TimerPanel = props => {
     const previouslyPaused = usePreviousValue(props.gamePaused);
 
@@ -83,5 +84,7 @@ const TimerPanel = props => {
         </div>
     )
 }
+
+
 
 export default TimerPanel;
