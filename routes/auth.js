@@ -137,7 +137,7 @@ module.exports = (app) => {
         const result = await collection.insertOne(user, options);
       
         // Print result
-        console.log(`${result.insertedCount} documents were inserted`);
+        //console.log(`${result.insertedCount} documents were inserted`);
         res.send('User Registration Successful');
       } catch (err) {
           //console.log(err.stack);
@@ -175,7 +175,7 @@ module.exports = (app) => {
         } 
 
       } catch (err) {
-          console.log(err.stack);
+          //console.log(err.stack);
           res.send({ error: 'Find Error' });
       } finally {
           await client.close();
@@ -208,7 +208,7 @@ module.exports = (app) => {
         } 
 
       } catch (err) {
-          console.log(err.stack);
+          //console.log(err.stack);
           res.send({ error: 'Find Error' });
       } finally {
           await client.close();
@@ -219,7 +219,7 @@ module.exports = (app) => {
 
   app.post('/api/confirm_user', (req, res) => {
   
-    console.log(req.body.username, req.body.email);
+    //console.log(req.body.username, req.body.email);
 
     async function run() {
       try {
@@ -242,7 +242,7 @@ module.exports = (app) => {
         } 
 
       } catch (err) {
-          console.log(err.stack);
+          //console.log(err.stack);
           res.send({ error: 'User Confirm Error' });
       } finally {
           await client.close();
@@ -253,7 +253,7 @@ module.exports = (app) => {
 
   app.post('/api/reset_user', (req, res) => {
   
-    console.log(req.body.username, req.body.email, req.body.password);
+    //console.log(req.body.username, req.body.email, req.body.password);
 
     async function run() {
       try {
@@ -267,7 +267,7 @@ module.exports = (app) => {
         // Execute insert operation
         const result = await collection.updateOne({username: req.body.username, email: req.body.email}, {$set: {password: req.body.password}});
         // Print result
-        console.log(result);
+        //console.log(result);
 
         if (result.acknowledged) {
           res.send('User Password Reset');
@@ -276,7 +276,7 @@ module.exports = (app) => {
         } 
 
       } catch (err) {
-          console.log(err.stack);
+          //console.log(err.stack);
           res.send({ error: 'Update Error' });
       } finally {
           await client.close();

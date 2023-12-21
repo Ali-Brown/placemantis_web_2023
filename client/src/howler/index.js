@@ -120,7 +120,7 @@ export const playTimeElapsingSound = () => {
         timeElapsingSound = null;
     }
 
-    console.log("stop time elapsing sound");
+    //console.log("stop time elapsing sound");
     
 } */
 
@@ -133,7 +133,7 @@ export const playWrongChoiceSound = () => {
 
     wrongChoiceSound.play();
     //timeElapsingSound.stop("elapseSound");
-    console.log("play wrong choice sound");
+    //console.log("play wrong choice sound");
 }
 
 export const playRightChoiceSound = () => {
@@ -145,7 +145,7 @@ export const playRightChoiceSound = () => {
 
     rightChoiceSound.play();
     //timeElapsingSound.stop("elapseSound");
-    console.log("play wrong choice sound");
+    //console.log("play wrong choice sound");
 }
 
 export const offAudio = () => {

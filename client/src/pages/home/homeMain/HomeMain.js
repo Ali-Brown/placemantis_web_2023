@@ -115,10 +115,10 @@ const HomeMain = props => {
 
     const toggleAudio = () => {
         if (props.audioOn) {
-            console.log("homeSound off");
+            //console.log("homeSound off");
             offAudio();
         } else {
-            console.log("homeSound on");
+            //console.log("homeSound on");
             playHomeSound();
         }
        props.onToggleAudio(props.audioOn);
