@@ -2,10 +2,15 @@ import React, {useEffect} from 'react';
 import './prePlayer.scss';
 import {scaleElement} from '../../../anime/scale';
 import {opacity} from '../../../anime/opacity';
+import {playGameSound} from '../../../howler/index';
+import {connect} from 'react-redux';
 
 const PrePlayer = props => {
 
     useEffect(() => {
+        if (props.audioOn) {
+            playGameSound();
+        }
 
         let opacityProps1 =
         {
@@ -53,7 +58,7 @@ const PrePlayer = props => {
         scaleElement(scaleProps);
 
         return() => {}
-    })
+    }, [])
 
     let targetMap;
 
@@ -304,4 +309,10 @@ const PrePlayer = props => {
     )
 }
 
-export default PrePlayer;
+const mapStateToProps = state => {
+    return {
+        audioOn: state.game.audioOn
+    }
+}
+
+export default connect(mapStateToProps, null)(PrePlayer);
