@@ -1,3 +1,4 @@
+//import { toggleAudio } from '../actions';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
@@ -8,6 +9,7 @@ const initialState = {
         difficulty: null,
         savedMission: null
     },
+    audioOn: false,
 
     playParams: {
         scorePerRound: 1000,
@@ -71,6 +73,21 @@ const initialState = {
     screenTrackerActive: false,
 
     prePlayerTimerEnded: false
+}
+
+const toggleAudio = (state, action) => {
+    if (action.boolData === true) {
+        return {
+            ...state,
+            audioOn: false
+        }
+    } else {
+        return {
+            ...state,
+            audioOn: true
+        }
+    }
+    
 }
 
 const setGameData = (state, action) => {
@@ -365,6 +382,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_GAME_DATA: 
             return setGameData(state, action);
+        case actionTypes.TOGGLE_AUDIO: 
+            return toggleAudio(state, action);
         case actionTypes.SHOW_LEVELS_DIALOGUE:
             return showLevelsDialogue(state, action);
         case actionTypes.SHOW_TYPE_DIALOGUE:

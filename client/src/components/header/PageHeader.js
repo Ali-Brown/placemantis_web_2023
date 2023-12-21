@@ -3,6 +3,8 @@ import './header.scss';
 //import {positionX} from '../../anime/position';
 import {staggerScaleParts} from '../../anime/scale';
 
+
+
 const PageHeader = props => {
 
     useEffect(() => {

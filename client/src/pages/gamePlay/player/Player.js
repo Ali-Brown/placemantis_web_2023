@@ -116,6 +116,7 @@ class Player extends Component {
     }
 
     componentDidMount() {
+
         if (this.props.gameType === 'Single') {
             let bonus = this.props.roundIntervalSeconds;
             let pointMaxSimple = this.props.rightCountForBonusPointsMaxSimple;
@@ -1424,6 +1425,8 @@ const mapStateToProps = state => {
         isAuthenticated: state.auth.isAuthenticated,
         user: state.auth.user,
         userRank: "Place Marshal",
+
+        audioOn: state.game.audioOn
     }
 }
 

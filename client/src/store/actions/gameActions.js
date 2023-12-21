@@ -9,6 +9,14 @@ export const setGameData = (gameData) => {
     }
 }
 
+// TOGGLE AUDIO
+export const toggleAudio = (boolData) => {
+    return {
+        type: actionTypes.TOGGLE_AUDIO,
+        boolData: boolData
+    }
+}
+
 /* // LEVELS DIALOGUE TRIGGERED ACTIONS
 export const setGameLevel = (levelNumber, levelStage) => {
     return {
