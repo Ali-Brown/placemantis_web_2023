@@ -6,10 +6,16 @@ import {scaleElement} from '../../../../anime/scale';
 import '../moderator.scss';
 import DialogueButton from '../../../../components/buttons/Button';
 import { useNavigate } from "react-router-dom";
+import {playMissionCompleteSound} from '../../../../howler/index';
 
 
 const GameOver = props => {
     const history = useNavigate();
+
+    if (props.audioOn) {
+        playMissionCompleteSound();
+    }
+    
 
     let totalRounds;
     let completedRounds;
@@ -67,7 +73,7 @@ const GameOver = props => {
             const elem = document.querySelector('.gameOverDialogueTitle');
             elem.style.color = '#ff1a00';
         } 
-    });
+    }, []);
 
     const onPlayAgain = () => {
         // console.log('play again');
@@ -198,6 +204,7 @@ const mapStateToProps = state => {
         rightCountForBonusPointsMaxHard: state.game.playParams.rightCountForBonusPointsMaxHard,
         simpleBonusPoint: state.game.playParams.simpleBonusPoint,
         hardBonusPoint: state.game.playParams.hardBonusPoint,
+        audioOn: state.game.audioOn
     }
 }
 

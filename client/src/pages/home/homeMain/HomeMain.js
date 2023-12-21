@@ -1724,19 +1724,19 @@ const HomeMain = props => {
                                     Logout
                                 </button>
                                 <Link to="/about" className='homeMainAboutAuth'>
-                                    <button>About</button>
+                                    <button onClick={props.aboutClicked}>About</button>
                                 </Link>
                         </div>
                         :
                         <div className='homeMainUnauthenticated'>
                             <Link to="/register" className='homeMainRegister'>
-                                <button>Register</button>
+                                <button onClick={props.registerClicked}>Register</button>
                             </Link>
                             <Link to="/login" className='homeMainLogin'>
-                                <button>Login</button>
+                                <button onClick={props.loginClicked}>Login</button>
                             </Link>
                             <Link to="/about" className='homeMainAboutUnauth'>
-                                <button>About</button>
+                                <button onClick={props.aboutClicked}>About</button>
                             </Link>
                         </div>
                     }                   
