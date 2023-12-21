@@ -58,6 +58,7 @@ const initialState = {
 
     roundTimerElapsed: false,
     timerAlmostUp: false,
+    warningAlarmShouldBeOn: false,
 
     level: 0,
     levelScore: 0,
@@ -147,14 +148,16 @@ const levelsDialogueTimerEnd = (state, action) => {
 const playerRoundTimerEnd = (state, action) => {
     return {
         ...state,
-        roundTimerElapsed: true
+        roundTimerElapsed: true,
+        warningAlarmShouldBeOn: false
     }
 }
 
 const roundTimerAlmostUp = (state, action) => {
     return {
         ...state,
-        timerAlmostUp: true
+        timerAlmostUp: true,
+        warningAlarmShouldBeOn: true
     }
 
 }
@@ -165,6 +168,7 @@ const playerRoundOver = (state, action) => {
         roundTimerElapsed: false,
         timerAlmostUp: false,
         gameStatus: 'On',
+        warningAlarmShouldBeOn: false
     }
 }
 

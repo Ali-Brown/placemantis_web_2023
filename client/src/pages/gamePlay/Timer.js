@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
+import {playTimeElapsingSound} from '../../howler/index';
 
 class Timer extends Component {
 
@@ -74,6 +75,16 @@ class Timer extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.warningAlarmShouldBeOn === false && this.props.warningAlarmShouldBeOn) {
+            //console.log(this.props.audioOn + " from roundtime warning");
+            if (this.props.audioOn) {
+                //console.log("in round time warning")
+                playTimeElapsingSound();
+            }
+        }
+    }
+
     componentWillUnmount() {
         clearInterval(this.timerInterval);
     }
@@ -125,7 +136,10 @@ class Timer extends Component {
 }
 
 const mapStateToProps = state => {
-    return {}
+    return {
+        audioOn: state.game.audioOn,
+        warningAlarmShouldBeOn: state.game.warningAlarmShouldBeOn
+    }
 }
 
 const mapDispatchToProps = dispatch => {

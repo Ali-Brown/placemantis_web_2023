@@ -324,6 +324,24 @@ const Home = props => {
         props.onLogoutUser();
     }
 
+    const aboutClicked = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
+    }
+
+    const loginClicked = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
+    }
+
+    const registerClicked = () => {
+        if (props.audioOn) {
+            playButtonSound();
+        }
+    }
+
 
 
     let pageContent = <HomeMain/>;
@@ -344,6 +362,9 @@ const Home = props => {
             //audioSelected={optionAudio}
             logoutClicked={logoutClicked}
             avatarType={avatarType}
+            aboutClicked={aboutClicked}
+            loginClicked={loginClicked}
+            registerClicked={registerClicked}
         />
     }
 

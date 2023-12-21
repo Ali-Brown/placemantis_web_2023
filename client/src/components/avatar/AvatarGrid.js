@@ -6,6 +6,7 @@ import Button from '../buttons/Button';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { positionX } from "../../anime/position";
+import {playButtonSound} from '../../howler/index';
 
 const AvatarGrid = props => {
 
@@ -22,6 +23,11 @@ const AvatarGrid = props => {
     }, [])
 
     const userAvatarSelected = (avatarName) => {
+
+        if (props.audioOn) {
+            playButtonSound();
+        }
+
         props.onUserAvatarSelected(avatarName);
     }
 
@@ -76,7 +82,8 @@ const AvatarGrid = props => {
 
 const mapStateToProps = state => {
     return {
-        userSelectedAvatar: state.auth.userSelectedAvatar
+        userSelectedAvatar: state.auth.userSelectedAvatar,
+        audioOn: state.game.audioOn
     }
 }
 
