@@ -15,6 +15,7 @@ export const playHomeSound = () => {
     //check if homeSound is null, if not stop previous homeSound and unload it
     Howler.stop(gameSound);
     gameSound = null;
+    missionCompleteSound = null;
 
     homeSound = new Howl({
         src: ['/audio/home.wav'],
@@ -22,7 +23,7 @@ export const playHomeSound = () => {
         html5: true
     });
 
-    //homeSound.play();
+    homeSound.play();
 }
 
 export const playGameSound = () => {
@@ -37,7 +38,7 @@ export const playGameSound = () => {
         html5: true
     });
 
-    //gameSound.play();
+    gameSound.play();
 }
 
 export const playMissionCompleteSound = () => {
@@ -54,7 +55,7 @@ export const playMissionCompleteSound = () => {
         html5: true
     });
 
-    //missionCompleteSound.play();
+    missionCompleteSound.play();
 }
 
 export const playButtonSound = () => {
@@ -106,7 +107,7 @@ export const stopTimeElapsingSound = () => {
         timeElapsingSound = null;
     }
 
-    console.log("stopped time elapsing sound in howler index", timeElapsingSound);
+    //console.log("stopped time elapsing sound in howler index", timeElapsingSound);
     
 }
 
