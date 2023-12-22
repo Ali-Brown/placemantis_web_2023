@@ -149,7 +149,7 @@ const playerRoundTimerEnd = (state, action) => {
     return {
         ...state,
         roundTimerElapsed: true,
-        warningAlarmShouldBeOn: false
+        //warningAlarmShouldBeOn: false
     }
 }
 
