@@ -190,7 +190,8 @@ const singleGameOver = (state, action) => {
         playedDifficulty: action.difficulty,
         showModerator: true,
         showGameOverDialogue: true,
-        prePlayerTimerEnded: false
+        prePlayerTimerEnded: false,
+        warningAlarmShouldBeOn: false
     }
 }
 
@@ -211,7 +212,8 @@ const levelOver = (state, action) => {
         prePlayerTimerEnded: false,
         levelRounds: action.levelRounds,
         completedLevelRounds: action.completedLevelRounds,
-        lifeCount: action.lifeCount
+        lifeCount: action.lifeCount,
+        warningAlarmShouldBeOn: false
     }
 }
 
@@ -219,7 +221,8 @@ const startNextLevel = (state, action) => {
     return {
         ...state,
        showLevelOverDialogue: false,
-       showGameLevelsDialogue: true
+       showGameLevelsDialogue: true,
+       warningAlarmShouldBeOn: false
     }
 }
 
@@ -241,7 +244,8 @@ const multilevelGameOver = (state, action) => {
         playedDifficulty: action.difficulty,
         showModerator: true,
         showGameOverDialogue: true,
-        prePlayerTimerEnded: false
+        prePlayerTimerEnded: false,
+        warningAlarmShouldBeOn: false
     }
 }
 
@@ -342,6 +346,7 @@ const restartLastMission = (state, action) => {
         showModerator: false,
         showFelicitator: false,
         showPlayer: true,
+        warningAlarmShouldBeOn: false
     }
 }
 
@@ -379,7 +384,8 @@ const restartMultilevelMission = (state, action) => {
 
         showModerator: true,
         showGameLevelsDialogue: true,
-        showGameOverDialogue: false
+        showGameOverDialogue: false,
+        warningAlarmShouldBeOn: false
     }
 }
 

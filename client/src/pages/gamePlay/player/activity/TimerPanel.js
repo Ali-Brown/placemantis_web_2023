@@ -3,27 +3,27 @@ import './activity.scss';
 import Timer from '../../Timer';
 import {positionX} from '../../../../anime/position';
 import {usePreviousValue} from '../../../../utilities/utilities';
-import {playTimeElapsingSound, stopTimeElapsingSound} from '../../../../howler/index';
+//import {playTimeElapsingSound, stopTimeElapsingSound} from '../../../../howler/index';
 
 
 const TimerPanel = props => {
     const previouslyPaused = usePreviousValue(props.gamePaused);
-    const previouslyPlayedTimerSound = usePreviousValue(props.timerAlarmOn);
+    //const previouslyPlayedTimerSound = usePreviousValue(props.timerAlarmOn);
 
     //console.log(previouslyPlayedTimerSound);
 
     useEffect(() => {
 
-        if (previouslyPlayedTimerSound === false && props.timerAlarmOn === true) {
-            console.log("TIMER ALARM PLAYING");
+        /* if (previouslyPlayedTimerSound === false && props.timerAlarmOn === true) {
+            //console.log("TIMER ALARM PLAYING");
             if (props.audioOn) {
                 //console.log("in round time warning")
                 playTimeElapsingSound();
             }
         } else if (previouslyPlayedTimerSound === true && props.timerAlarmOn === false) {
-            console.log("TIMER ALARM STOPPED PLAYING");
-            stopTimeElapsingSound();
-        }
+            //console.log("TIMER ALARM STOPPED PLAYING");
+            //stopTimeElapsingSound();
+        } */
 
         if (props.timerElapsed || props.timerAlmostUp) {
             const elem = document.querySelector('.activityTimerPanelTimer');
