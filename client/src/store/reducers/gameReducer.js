@@ -284,6 +284,7 @@ const resetGameState = (state, action) => {
     
         roundTimerElapsed: false,
         timerAlmostUp: false,
+        warningAlarmShouldBeOn: false,
     
         level: 0,
         levelScore: 0,
