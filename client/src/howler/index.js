@@ -22,21 +22,13 @@ export const playHomeSound = () => {
         html5: true
     });
 
-    homeSound.play();
+    //homeSound.play();
 }
 
 export const playGameSound = () => {
     //check if homeSound is null, if not stop previous homeSound and unload it
     Howler.stop();
     homeSound = null;
-    buttonSound = null;
-    navSound = null;
-    gameSound = null;
-    newRoundSound = null;
-    timeElapsingSound = null;
-    wrongChoiceSound = null;
-    rightChoiceSound = null;
-    missionCompleteSound = null;
 
     gameSound = new Howl({
         src: ['/audio/game_play.wav'],
@@ -45,21 +37,15 @@ export const playGameSound = () => {
         html5: true
     });
 
-    gameSound.play();
+    //gameSound.play();
 }
 
 export const playMissionCompleteSound = () => {
     //check if homeSound is null, if not stop previous homeSound and unload it
     Howler.stop();
     homeSound = null;
-    buttonSound = null;
-    navSound = null;
     gameSound = null;
-    newRoundSound = null;
-    timeElapsingSound = null;
-    wrongChoiceSound = null;
-    rightChoiceSound = null;
-    missionCompleteSound = null;
+    
 
     missionCompleteSound = new Howl({
         src: ['/audio/mission_complete.wav'],
@@ -68,7 +54,7 @@ export const playMissionCompleteSound = () => {
         html5: true
     });
 
-    missionCompleteSound.play();
+    //missionCompleteSound.play();
 }
 
 export const playButtonSound = () => {

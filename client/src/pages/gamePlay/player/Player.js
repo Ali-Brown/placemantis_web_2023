@@ -1385,6 +1385,8 @@ class Player extends Component {
                             secondsPerRound={secondsPerRound}
                             warningSecond={this.props.roundTimerWarningSecond}
                             gamePaused={this.state.gamePaused}
+                            timerAlarmOn={this.props.warningAlarmShouldBeOn}
+                            audioOn={this.props.audioOn}
                         />
                     </div>
                     <div className={styles.optionsPanel}>
@@ -1460,6 +1462,8 @@ const mapStateToProps = state => {
         completedMultilevelRounds: state.game.completedMultilevelRounds,
         shuffledStages: state.game.shuffledStages,
         screenTrackerActive: state.game.screenTrackerActive,
+
+        warningAlarmShouldBeOn: state.game.warningAlarmShouldBeOn,
 
         // FROM AUTH GLOBAL STATE
         isAuthenticated: state.auth.isAuthenticated,

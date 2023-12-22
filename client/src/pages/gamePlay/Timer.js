@@ -75,7 +75,7 @@ class Timer extends Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    /* componentDidUpdate(prevProps) {
         if (prevProps.warningAlarmShouldBeOn === false && this.props.warningAlarmShouldBeOn) {
             //console.log(this.props.audioOn + " from roundtime warning");
             if (this.props.audioOn) {
@@ -83,7 +83,7 @@ class Timer extends Component {
                 playTimeElapsingSound();
             }
         }
-    }
+    } */
 
     componentWillUnmount() {
         clearInterval(this.timerInterval);
