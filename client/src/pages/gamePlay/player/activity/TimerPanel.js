@@ -3,14 +3,14 @@ import './activity.scss';
 import Timer from '../../Timer';
 import {positionX} from '../../../../anime/position';
 import {usePreviousValue} from '../../../../utilities/utilities';
-import {playTimeElapsingSound} from '../../../../howler/index';
+import {playTimeElapsingSound, stopTimeElapsingSound} from '../../../../howler/index';
 
 
 const TimerPanel = props => {
     const previouslyPaused = usePreviousValue(props.gamePaused);
     const previouslyPlayedTimerSound = usePreviousValue(props.timerAlarmOn);
 
-    console.log(previouslyPlayedTimerSound);
+    //console.log(previouslyPlayedTimerSound);
 
     useEffect(() => {
 
@@ -22,6 +22,7 @@ const TimerPanel = props => {
             }
         } else if (previouslyPlayedTimerSound === true && props.timerAlarmOn === false) {
             console.log("TIMER ALARM STOPPED PLAYING");
+            stopTimeElapsingSound();
         }
 
         if (props.timerElapsed || props.timerAlmostUp) {
