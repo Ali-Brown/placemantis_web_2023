@@ -32,7 +32,7 @@ import SouthAmerica from './stages/SouthAmerica';
 import World from './stages/World';
 
 import withRouter from '../../../withRouter';
-import {playNewRoundSound, playWrongChoiceSound, playRightChoiceSound, playNavSound, playButtonSound} from '../../../howler/index';
+import {playNewRoundSound, playWrongChoiceSound, playRightChoiceSound, playNavSound, playButtonSound, stopTimeElapsingSound} from '../../../howler/index';
 
 
 class Player extends Component {
@@ -288,10 +288,10 @@ class Player extends Component {
         } else if (prevState.rightUserOption === false && this.state.rightUserOption === true && this.state.gameOver === false) {
 
             // console.log('Running Right Option Routine, total score:', this.state.totalScore, );
-            if (this.props.audioOn) {
+            /* if (this.props.audioOn) {
                 //console.log("Wrong Choice!");
                 playRightChoiceSound();
-            }
+            } */
         
             let newRightChoiceCount = this.state.rightChoiceCount + 1;
             let newRoundScore = this.props.scorePerRound;
@@ -974,10 +974,10 @@ class Player extends Component {
                 // console.log(domID);
             } else if (domID !== this.state.nextPlaceName) {
 
-                if (this.props.audioOn) {
+                /* if (this.props.audioOn) {
                     //console.log("Wrong Choice!");
                     playWrongChoiceSound();
-                }
+                } */
                 
                 let wrongChoices = this.state.wrongRoundChoices
                 wrongChoices.push(domID);
@@ -1107,6 +1107,7 @@ class Player extends Component {
                 }
             }
         }
+
     }
     
     render () {
