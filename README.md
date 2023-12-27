@@ -26,6 +26,6 @@ Howler: Javascript audio library
 Concurrency, Eslint, Nodemon, Prettier, Sass, Git
 
 # Pending Features
-##Save/Resume multilevel mission
-##Save/Post best stage score
-##Ranking mission designation
+## Save/Resume multilevel mission
+## Save/Post best stage score
+## Ranking mission designation
