@@ -32,7 +32,7 @@ export const playGameSound = () => {
     homeSound = null;
 
     gameSound = new Howl({
-        src: ['/audio/game_play.wav'],
+        src: ['/audio/game_play.mp3'],
         loop: true,
         volume: 0.2,
         html5: true

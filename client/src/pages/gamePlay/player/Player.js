@@ -1114,7 +1114,7 @@ class Player extends Component {
 
         let playerStage;
         let currentUserRank = 'Visitor';
-        let avatarType = 'Mark';
+        let avatarType = 'Visitor';
 
         if (this.props.user != null) {
             currentUserRank = this.props.user.rank;
