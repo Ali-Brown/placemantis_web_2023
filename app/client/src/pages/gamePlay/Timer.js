@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import {playTimeElapsingSound} from '../../howler/index';
+import {playTimeElapsingSound, stopTimeElapsingSound} from '../../howler/index';
 
 class Timer extends Component {
 
@@ -81,6 +81,11 @@ class Timer extends Component {
             if (this.props.audioOn) {
                 //console.log("in round time warning")
                 playTimeElapsingSound();
+            }
+        } else if (prevProps.warningAlarmShouldBeOn && this.props.warningAlarmShouldBeOn === false) {
+            if (this.props.audioOn) {
+                //console.log("in round time warning")
+                stopTimeElapsingSound();
             }
         }
     }

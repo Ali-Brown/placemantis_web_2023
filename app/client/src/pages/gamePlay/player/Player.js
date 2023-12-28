@@ -1107,13 +1107,14 @@ class Player extends Component {
                 }
             }
         }
+
     }
     
     render () {
 
         let playerStage;
         let currentUserRank = 'Visitor';
-        let avatarType = 'Mark';
+        let avatarType = 'Visitor';
 
         if (this.props.user != null) {
             currentUserRank = this.props.user.rank;
@@ -1460,6 +1461,8 @@ const mapStateToProps = state => {
         completedMultilevelRounds: state.game.completedMultilevelRounds,
         shuffledStages: state.game.shuffledStages,
         screenTrackerActive: state.game.screenTrackerActive,
+
+        warningAlarmShouldBeOn: state.game.warningAlarmShouldBeOn,
 
         // FROM AUTH GLOBAL STATE
         isAuthenticated: state.auth.isAuthenticated,

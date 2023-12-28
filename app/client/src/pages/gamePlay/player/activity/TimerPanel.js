@@ -3,12 +3,27 @@ import './activity.scss';
 import Timer from '../../Timer';
 import {positionX} from '../../../../anime/position';
 import {usePreviousValue} from '../../../../utilities/utilities';
+//import {playTimeElapsingSound, stopTimeElapsingSound} from '../../../../howler/index';
 
 
 const TimerPanel = props => {
     const previouslyPaused = usePreviousValue(props.gamePaused);
+    //const previouslyPlayedTimerSound = usePreviousValue(props.timerAlarmOn);
+
+    //console.log(previouslyPlayedTimerSound);
 
     useEffect(() => {
+
+        /* if (previouslyPlayedTimerSound === false && props.timerAlarmOn === true) {
+            //console.log("TIMER ALARM PLAYING");
+            if (props.audioOn) {
+                //console.log("in round time warning")
+                playTimeElapsingSound();
+            }
+        } else if (previouslyPlayedTimerSound === true && props.timerAlarmOn === false) {
+            //console.log("TIMER ALARM STOPPED PLAYING");
+            //stopTimeElapsingSound();
+        } */
 
         if (props.timerElapsed || props.timerAlmostUp) {
             const elem = document.querySelector('.activityTimerPanelTimer');
@@ -33,7 +48,7 @@ const TimerPanel = props => {
 
         positionX(positionProp);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.timerElapsed, props.timerAlmostUp, props.gamePaused]);
+    }, [props.timerElapsed, props.timerAlmostUp, props.gamePaused, props.timerAlarmOn]);
 
     return(
         <div className='playerActivityTimerPanel'>

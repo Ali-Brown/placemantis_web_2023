@@ -43,11 +43,11 @@ const Developer = props => {
                         <div className='developerContacts'>
                            <div>
                                 <img src="/images/about/phone-icon.png" alt="developer"/>
-                                <span>1-304-953-0173</span>
+                                <span>1-304-953-0171</span>
                             </div>
                             <div>
                                 <img src="/images/about/email-icon.png" alt="developer"/>
-                                <span>alibrown8319@gmail.com</span>
+                                <span>jaajoba@gmail.com</span>
                             </div>
                             <div>
                                 <img src="/images/about/github-icon.png" alt="developer"/>
