@@ -73,7 +73,7 @@ const GameOver = props => {
             const elem = document.querySelector('.gameOverDialogueTitle');
             elem.style.color = '#ff1a00';
         } 
-    }, []);
+    }, [completedRounds, totalRounds, totalScore, unbonusedStageScore]);
 
     const onPlayAgain = () => {
         // console.log('play again');

@@ -110,7 +110,7 @@ const HomeMain = props => {
             Howler.stop();
         } */
        
-    }, []);
+    }, [props.audioOn]);
     
 
     const toggleAudio = () => {

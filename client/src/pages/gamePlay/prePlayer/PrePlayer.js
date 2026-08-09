@@ -58,7 +58,7 @@ const PrePlayer = props => {
         scaleElement(scaleProps);
 
         return() => {}
-    }, [])
+    }, [props.audioOn])
 
     let targetMap;
 
