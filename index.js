@@ -2,7 +2,7 @@ const express = require('express');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
-
+//const seedPlaces = require('./DBSeed/places_seed');
 
 
 const app = express();
@@ -41,6 +41,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 authRoutes(app);
+
+app.get('/home', (req, res) => {
+  res.send('Welcome to placemantis home');
+});
+
+app.get('/seed-places', (req, res) => {
+  seedPlaces();
+  res.send('Testing Database Connection');
+});
 
 
 if (process.env.NODE_ENV === 'production') {
