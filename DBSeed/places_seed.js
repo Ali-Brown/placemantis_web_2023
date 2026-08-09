@@ -1,7 +1,4 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable quotes */
-//const Place = require('./Place');
-const keys = require('../config/keys');
+const { getDb } = require('../lib/db');
 
 const placeList = [
   {
@@ -4668,21 +4665,24 @@ const placeList = [
   }
 ];
 
-const { MongoClient } = require("mongodb");
+//const { MongoClient } = require("mongodb");
 //const { collection } = require('./Place');
  
 // Replace the following with your Atlas connection string                                                                                                                                        
-const url = keys.mongoURI;
-const client = new MongoClient(url);
+//const url = keys.mongoURI;
+//const client = new MongoClient(url);
 // Reference the database to use
-const dbName = "placemantis_web";
+//const dbName = "placemantis_web";
 
 function seedDB() {
   async function run() {
     try {
       // Connect to the Atlas cluster
-      await client.connect();
-      const db = client.db(dbName);
+      //await client.connect();
+      //const db = client.db(dbName);
+      // Connect to the Atlas cluster
+      const db = await getDb();
+
       // Reference the "people" collection in the specified database
       const collection = db.collection("places");
       

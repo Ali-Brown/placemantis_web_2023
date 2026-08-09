@@ -1,11 +1,4 @@
-//const User = require('../models/User');
-const keys = require('../config/keys');
-const { MongoClient } = require("mongodb");
- 
-//Replace the following with your Atlas connection string                                                                                                                                        
-const url = keys.mongoURI;
-const client = new MongoClient(url);
-const dbName = "placemantis_web";
+const { getDb } = require('../lib/db');
 
 module.exports = (app) => {
   //TO-DO
@@ -124,8 +117,8 @@ module.exports = (app) => {
     async function run() {
       try {
         // Connect to the Atlas cluster
-        await client.connect();
-        const db = client.db(dbName);
+        const db = await getDb();
+        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -155,8 +148,8 @@ module.exports = (app) => {
     async function run() {
       try {
         // Connect to the Atlas cluster
-        await client.connect();
-        const db = client.db(dbName);
+        const db = await getDb();
+        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -190,8 +183,8 @@ module.exports = (app) => {
     async function run() {
       try {
         // Connect to the Atlas cluster
-        await client.connect();
-        const db = client.db(dbName);
+        const db = await getDb();
+        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -224,8 +217,8 @@ module.exports = (app) => {
     async function run() {
       try {
         // Connect to the Atlas cluster
-        await client.connect();
-        const db = client.db(dbName);
+        const db = await getDb();
+        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -258,8 +251,8 @@ module.exports = (app) => {
     async function run() {
       try {
         // Connect to the Atlas cluster
-        await client.connect();
-        const db = client.db(dbName);
+        const db = await getDb();
+        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");

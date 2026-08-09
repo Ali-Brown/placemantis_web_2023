@@ -1,15 +1,14 @@
-const express = require('express');
-const keys = require('./config/keys');
-const bodyParser = require('body-parser');
-const authRoutes = require('./routes/auth');
-const seedPlaces = require('./DBSeed/places_seed');
+import express, { static } from 'express';
+import { urlencoded, json } from 'body-parser';
+import authRoutes from './routes/auth';
+import seedPlaces from './DBSeed/places_seed';
 
 
 const app = express();
 
-
 /* MONGODB SET UP - start */
-const { MongoClient, ServerApiVersion } = require('mongodb');
+/*
+import { MongoClient, ServerApiVersion } from 'mongodb';
 const uri = keys.mongoURI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -37,38 +36,54 @@ run().catch(console.dir);
 /* MONGODB SET UP - end */
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(urlencoded({ extended: false }));
+app.use(json());
 
+// API routes
 authRoutes(app);
 
+// Basic test endpoint
 app.get('/home', (req, res) => {
   res.send('Welcome to placemantis home');
 });
 
-app.get('/seed-places', (req, res) => {
-  seedPlaces();
-  res.send('Testing Database Connection');
+// Serve React production build
+app.use(static(path.join(__dirname, 'client', 'build')));
+
+// React Router fallback
+app.get('*', (req, res) => {
+  res.sendFile(
+    path.join(__dirname, 'client', 'build', 'index.html')
+  );
 });
 
+app.get('/seed-places', (req, res) => {
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  if (req.query.key !== keys.seedKey) {
+    return res.status(403).send('Forbidden');
+  }
+  
+  try {
+    await seedPlaces();
 
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+    res.send('Places seeded successfully');
+  } catch (err) {
+    console.error('Seeding error:', err);
 
-//const PORT = process.env.PORT || 8000;
-//app.listen(PORT);
+    res.status(500).send({
+      error: 'Database seeding failed'
+    });
+  }
+});
 
+// Only start a local HTTP server when running directly.
+// Vercel will handle the server itself.
 if (require.main === module) {
   const PORT = process.env.PORT || 8000;
+
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 }
 
-module.exports = app;
+export default app;
