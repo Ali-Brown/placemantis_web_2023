@@ -1,4 +1,4 @@
-const { getDb } = require('../lib/db');
+const { getDb } = require('../lib/mongodb');
 
 module.exports = (app) => {
   //TO-DO
@@ -118,7 +118,6 @@ module.exports = (app) => {
       try {
         // Connect to the Atlas cluster
         const db = await getDb();
-        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -149,7 +148,6 @@ module.exports = (app) => {
       try {
         // Connect to the Atlas cluster
         const db = await getDb();
-        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -184,7 +182,6 @@ module.exports = (app) => {
       try {
         // Connect to the Atlas cluster
         const db = await getDb();
-        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -218,7 +215,6 @@ module.exports = (app) => {
       try {
         // Connect to the Atlas cluster
         const db = await getDb();
-        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");
@@ -252,7 +248,6 @@ module.exports = (app) => {
       try {
         // Connect to the Atlas cluster
         const db = await getDb();
-        const collection = db.collection('users');
 
         // Reference the "user" collection in the specified database
         const collection = db.collection("users");

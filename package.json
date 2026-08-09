@@ -11,13 +11,14 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm install --prefix client && npm run build --prefix client",
+    "build": "npm install --prefix client && npm run build --prefix client && shx rm -rf public && shx cp -r client/build public",
     "seed": "node DBSeed/seed.js"
   },
   "author": "Babatunde Ali-Brown",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "dotenv": "^17.4.2",
     "express": "^4.18.2",
     "mongodb": "^6.21.0"
   },
@@ -28,6 +29,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "nodemon": "^3.0.1",
-    "prettier": "^3.1.0"
+    "prettier": "^3.1.0",
+    "shx": "^0.4.0"
   }
 }

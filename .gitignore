@@ -2,3 +2,5 @@ node_modules
 dev.js
 .env
 .env.local
+
+/public
