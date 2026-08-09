@@ -2,7 +2,7 @@ const express = require('express');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
-//const seedPlaces = require('./DBSeed/places_seed');
+const seedPlaces = require('./DBSeed/places_seed');
 
 
 const app = express();
@@ -61,5 +61,14 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 8000;
-app.listen(PORT);
+//const PORT = process.env.PORT || 8000;
+//app.listen(PORT);
+
+if (require.main === module) {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
