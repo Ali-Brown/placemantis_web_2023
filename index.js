@@ -1,4 +1,4 @@
-import express, { static } from 'express';
+import express from 'express';
 import { urlencoded, json } from 'body-parser';
 import authRoutes from './routes/auth';
 import seedPlaces from './DBSeed/places_seed';
