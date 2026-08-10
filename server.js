@@ -82,36 +82,36 @@ app.get('/api/health', async (req, res) => {
  * permanently available in production.
  */
 
-// app.post('/api/seed-places', async (req, res) => {
-//   const authHeader = req.headers.authorization;
-//   const expected = `Bearer ${process.env.SEED_KEY}`;
-//
-//   if (!process.env.SEED_KEY) {
-//     return res.status(500).json({
-//       error: 'SEED_KEY is not configured'
-//     });
-//   }
-//
-//   if (authHeader !== expected) {
-//     return res.status(401).json({
-//       error: 'Unauthorized'
-//     });
-//   }
-//
-//   try {
-//     await seedPlaces();
-//
-//     return res.status(200).json({
-//       message: 'Production database seeded successfully'
-//     });
-//   } catch (error) {
-//     console.error('Database seed error:', error);
-//
-//     return res.status(500).json({
-//       error: 'Database seeding failed'
-//     });
-//   }
-// });
+app.post('/api/seed-places', async (req, res) => {
+  const authHeader = req.headers.authorization;
+  const expected = `Bearer ${process.env.SEED_KEY}`;
+
+  if (!process.env.SEED_KEY) {
+    return res.status(500).json({
+      error: 'SEED_KEY is not configured'
+    });
+  }
+
+  if (authHeader !== expected) {
+    return res.status(401).json({
+      error: 'Unauthorized'
+    });
+  }
+
+  try {
+    await seedPlaces();
+
+    return res.status(200).json({
+      message: 'Production database seeded successfully'
+    });
+  } catch (error) {
+    console.error('Database seed error:', error);
+
+    return res.status(500).json({
+      error: 'Database seeding failed'
+    });
+  }
+});
 
 /*
  * ============================================================
