@@ -4681,5 +4681,5 @@ async function seedPlaces() {
   return result;
 }
 
-module.exports = seedDB;
+module.exports = seedPlaces;
 

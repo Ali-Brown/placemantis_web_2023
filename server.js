@@ -6,6 +6,7 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
+// TEMPORARY — remove after production database is seeded.
 const seedPlacesRoute = require('./routes/seed-places');
 
 const app = express();
@@ -50,9 +51,6 @@ app.get('/api/health', async (req, res) => {
     });
   }
 });
-
-// TEMPORARY — remove after production database is seeded.
-seedPlacesRoute(app);
 
 app.get('/home', (req, res) => {
   res.send('Welcome to placemantis home');
