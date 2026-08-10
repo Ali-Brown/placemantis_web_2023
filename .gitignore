@@ -2,6 +2,7 @@ node_modules
 dev.js
 .env
 .env.local
+.env.production.local
 
 /public
 .vercel
