@@ -6,11 +6,7 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
-
-
-// Enable this when you are ready to seed production.
-// The seed module should export a function.
-// const seedPlaces = require('./DBSeed/places_seed');
+const seedPlacesRoute = require('./routes/seed-places');
 
 const app = express();
 
@@ -24,6 +20,9 @@ app.use(bodyParser.json());
  */
 
 authRoutes(app);
+
+// TEMPORARY — remove after production database is seeded.
+seedPlacesRoute(app);
 
 /*
  * ============================================================
@@ -52,65 +51,11 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
-/*
- * ============================================================
- * TEMPORARY PRODUCTION SEED ROUTE
- * ============================================================
- *
- * This route is intended to be enabled only long enough to
- * seed the production database.
- *
- * Before using it:
- *
- * 1. Uncomment the seedPlaces require above.
- * 2. Add SEED_KEY to Vercel Production environment variables.
- * 3. Deploy.
- * 4. Call:
- *
- *    POST /api/seed-places
- *
- *    with:
- *
- *    Authorization: Bearer YOUR_SEED_KEY
- *
- * 5. Verify the database was seeded.
- * 6. Remove this route.
- * 7. Redeploy.
- *
- * IMPORTANT:
- * Do not leave an unprotected database-seeding endpoint
- * permanently available in production.
- */
+// TEMPORARY — remove after production database is seeded.
+seedPlacesRoute(app);
 
-app.post('/api/seed-places', async (req, res) => {
-  const authHeader = req.headers.authorization;
-  const expected = `Bearer ${process.env.SEED_KEY}`;
-
-  if (!process.env.SEED_KEY) {
-    return res.status(500).json({
-      error: 'SEED_KEY is not configured'
-    });
-  }
-
-  if (authHeader !== expected) {
-    return res.status(401).json({
-      error: 'Unauthorized'
-    });
-  }
-
-  try {
-    await seedPlaces();
-
-    return res.status(200).json({
-      message: 'Production database seeded successfully'
-    });
-  } catch (error) {
-    console.error('Database seed error:', error);
-
-    return res.status(500).json({
-      error: 'Database seeding failed'
-    });
-  }
+app.get('/home', (req, res) => {
+  res.send('Welcome to placemantis home');
 });
 
 /*

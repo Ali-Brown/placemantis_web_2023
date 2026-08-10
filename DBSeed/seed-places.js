@@ -4665,41 +4665,21 @@ const placeList = [
   }
 ];
 
-//const { MongoClient } = require("mongodb");
-//const { collection } = require('./Place');
- 
-// Replace the following with your Atlas connection string                                                                                                                                        
-//const url = keys.mongoURI;
-//const client = new MongoClient(url);
-// Reference the database to use
-//const dbName = "placemantis_web";
+async function seedPlaces() {
+  const db = await getDb();
 
-function seedDB() {
-  async function run() {
-    try {
-      // Connect to the Atlas cluster
-      //await client.connect();
-      //const db = client.db(dbName);
-      // Connect to the Atlas cluster
-      const db = await getDb();
+  const collection = db.collection('places');
 
-      // Reference the "people" collection in the specified database
-      const collection = db.collection("places");
-      
-      // Prevent additional documents from being inserted if one fails
-      const options = { ordered: true };
-      // Execute insert operation
-      const result = await collection.insertMany(placeList, options);
-    
-      // Print result
-      //console.log(`${result.insertedCount} documents were inserted`);
-    } catch (err) {
-        //console.log(err.stack);
-    } finally {
-        await client.close();
-    }
-  }
-  run().catch(console.dir);
+  const options = {
+    ordered: true
+  };
+
+  const result = await collection.insertMany(placeList, options);
+
+  console.log(`Successfully inserted ${result.insertedCount} places.`);
+
+  return result;
 }
 
 module.exports = seedDB;
+
