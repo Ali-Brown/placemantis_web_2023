@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -119,6 +120,7 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
 
 /*
 require('dotenv').config();
