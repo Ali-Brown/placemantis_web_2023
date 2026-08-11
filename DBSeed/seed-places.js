@@ -1,5 +1,20 @@
 const { getDb } = require('../lib/mongodb');
 
+/*
+ * ============================================================
+ * SEED FILE IS ONLY USEFUL FOR ONE TIME USE IN A NEW PROJECT
+ * WITH FRESH MONGODB INSTALLATION
+ * ============================================================
+ * TEMPORARY — remove after production databases Dev and/or Prod is seeded.
+ * For production seeding:
+ * Run at terminal using: curl -X POST "https://placemantis-web-2023-hcsxo1d4x-placemantis.vercel.app/api/seed-places?key=ENTER-PRODUCTION-SEED-KEY"
+ * For dev seeding:
+ * Run node DBSeed/seed.js at project root directory
+ * 
+ *
+ * 
+ */
+
 const placeList = [
   {
     name: "Cape Verde",

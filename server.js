@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 authRoutes(app);
 
 // TEMPORARY — remove after production database is seeded.
+// Run at terminal using: curl -X POST "https://placemantis-web-2023-hcsxo1d4x-placemantis.vercel.app/api/seed-places?key=ENTER-PRODUCTION-SEED-KEY"
 seedPlacesRoute(app);
 
 /*
